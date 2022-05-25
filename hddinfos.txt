@@ -1,0 +1,1730 @@
+BAIXAR MRT TOOL E SEADIV!!!!!!
+seagate f3 tools (2014+ tem SA files)
+STComTools F3 Screen Captures :	
+como fazer para listar e baixar os modulos por terminal??				
+
+Seagate Barracuda 3000GB
+SN: W1F0AWHP
+MODEL: ST3000DM001
+PN: 9YN166-302
+FW: CC4C
+DATE: 12314
+SITE: WU
+DOM: 01/2012
+Placa mae: 100664987 REV a
+Chip: 25Q40BW -> 25Q40BWS05 -> 25Q40B.W.S05
+
+
+Familia: 0x58 - Grenada (?)
+
+
+
+RAP - 33.808 Read Adaptives Parameters. Zone + have a lot of importance.
+SAP - 8216   Servo Adaptives Parameters. Servo. One of the most important. Read the data, holding position.
+CAP - 528    Controller Adaptives Parameters. Model, capacity, WWWN, serial.
+IAP - 656    Interface Adaptive Parameters. This data block is replenished when using HDD container of flags, such as Spinup at Power ON - spin the engine when powered. The container may be empty, if the flags are not diverted. Not critical for the heads.
+
+
+
+SLIP: https://forum.hddguru.com/viewtopic.php?t=38424		
+
+comandos SEAGATE: http://www.hddoracle.com/viewtopic.php?f=6&t=3&sid=385b18478f1f7b33bbe40c6e7b60b988
+analise F3 ROM http://www.hddoracle.com/viewtopic.php?t=2173
+
+
+http://www.hddoracle.com/
+
+todo detalhe:
+https://forum.hddguru.com/viewtopic.php?f=16&t=6562
+
+http://www.hddoracle.com/viewtopic.php?f=83&t=1455
+
+https://hddscan.com/doc/HDD_Tracks_and_Zones.html
+
+The ST-10 arch goes up until the 7200.10 and the F3 arch starts at 7200.11
+
+http://www.hddoracle.com/viewtopic.php?f=2&t=1929
+
+
+Just a small correction : - On older Seagate drives (ST-10 type and older) the adaptives are stored on the platters and because of that it's possible to replace the PCB of the drive with a compatible one without the need of replacing or re-programming the ROM chip as long as the ROM code is the same. ROM must match app code on the platter but if the firmware version of the donor is the same as the firmware version of the patient there should be no issue replacing the PCB as both ROM codes will be the same. Only on F3 arch drives - 7200.11 and newer Seagate did start storing the adaptives on the ROM chip (or embedded ROM) on the PCB.
+
+====================
+
+
+
+
+Hi all
+
+I have a ST3250318AS firmware:HP11 SN:9VY0JY7N DateCode:09523 Thailand.
+
+After a power surge it does not boot anymore.
+Measured Controller board - without shorts.
+Dumped the SPI Flash. Measured coils resistance ~3.6ohm each.
+Powering it:
+- The sounds seems OK (motor speeding up, some reading noises). SATA interface seems to be working but gives reading errors.
+- Plugged into USB-SATA adapter on windows (omg.. did i make it worse?) and it detected two partitions but can't retrieve partition names nor read data. On Linux read error messages.
+
+Can someone please help me with this? Maybe some file on System Area? How to proceed?
+
+
+Serial terminal access:
+F3 1>
+New Skews HP_PSG Pharaoh 0F with VTPI,RAP16,Yeti 3.0
+Product FamilyId: 3F, MemberId: 06
+HDA SN: 9VY0JY7N, RPM: 7201, Wedges: 120, Heads: 1, Lbas: 1D1C5970, PreampType: 59 01
+PCBA SN: 00007951L7P0, Controller: YETIST_3_0(649A)(3-12-3-2), Channel: AGERE_COPPERHEAD_LITE, PowerAsic: MCKINLEY DESKTOP LITE Rev 94, BufferBytes: 800000
+Package Version: PH0G2C.HPD1.DS022H.HP11    , Package P/N: 100573513, Package Builder ID: AT,
+Package Build Date: 05/18/2009, Package Build Time: 17:02:44, Package CFW Version: PH0G.HPD1.00167620.AT00,
+Package SFW1 Version: C23D, Package SFW2 Version: ----, Package SFW3 Version: ----, Package SFW4 Version: ----
+Controller FW Rev: 05181702, CustomerRel: HP11, Changelist: 00167620, ProdType: PH0G.HPD1, Date: 05/18/2009, Time: 170244, UserId: 00236537
+Servo FW Rev: C23D
+RAP FW Implementation Key: 10, Format Rev: 0001, Contents Rev: A1 05 08 03
+Features:
+- Quadradic Equation AFH enabled
+- VBAR with adjustable zone boundaries enabled
+- Volume Based Sparing enabled
+- IOEDC enabled
+- IOECC enabled
+- DERP Read Retries enabled
+- LTTC-UDR2 compiled off
+
+
+
+
+F
+
+
+           RWErrorRecovery Mode Page
+              RWErrorRecovery Group
+Byte:00A2:       RWRecoveryFlags = C0
+Byte:00A2:           Bit:0, DISABLE_CORRECTION = 0
+Byte:00A2:           Bit:1, DISABLE_TRANSFER_ON_ERROR = 0
+Byte:00A2:           Bit:2, POST_ERROR = 0
+Byte:00A2:           Bit:3, ENABLE_EARLY_RECOVERY = 0
+Byte:00A2:           Bit:4, READ_CONTINUOUS = 0
+Byte:00A2:           Bit:5, TRANSFER_BLOCK = 0
+Byte:00A2:           Bit:6, READ_SPARING_ENABLED = 1
+Byte:00A2:           Bit:7, WRITE_SPARING_ENABLED = 1
+Byte:00A3:       ReadRetries = 10
+Byte:00A4:       CorrectionSpan = FF
+Byte:00A5:       HeadOffset = 00
+Byte:00A6:       DataStrobeOffset = 00
+Byte:00A8:       WriteRetries = 05
+Byte:00AA:       RecoveryLimitMSB = FF
+Byte:00AB:       RecoveryLimitLSB = FF
+
+           FormatParameters Mode Page
+              FormatParameters Group
+Byte:00AE:       TracksPerZoneMSB = 00
+Byte:00AF:       TracksPerZoneLSB = 01
+Byte:00B0:       AltSectorsPerZoneMSB = 00
+Byte:00B1:       AltSectorsPerZoneLSB = 00
+Byte:00B2:       AltTracksPerZoneMSB = 00
+Byte:00B3:       AltTracksPerZoneLSB = 00
+Byte:00B4:       AltTracksPerVolumeMSB = 00
+Byte:00B5:       AltTracksPerVolumeLSB = 02
+Byte:00B6:       SectorsPerTrackMSB = 00
+Byte:00B7:       SectorsPerTrackLSB = 03
+Byte:00B8:       BytesPerSectorMSB = 02
+Byte:00B9:       BytesPerSectorLSB = 00
+Byte:00BA:       InterleaveMSB = 00
+Byte:00BB:       InterleaveLSB = 01
+Byte:00BC:       TrackSkewMSB = 00
+Byte:00BD:       TrackSkewLSB = 00
+Byte:00BE:       CylinderSkewMSB = 00
+Byte:00BF:       CylinderSkewLSB = 00
+Byte:00C0:       FormatFlags = 40
+
+           DriveGeometry Mode Page
+              DriveGeometry Group
+Byte:00C6:       CylindersMSB = 00
+Byte:00C7:       CylindersMDB = 00
+Byte:00C8:       CylindersLSB = 04
+Byte:00C9:       Heads = 01
+Byte:00CA:       WritePrecompMSB = 00
+Byte:00CB:       WritePrecompMDB = 00
+Byte:00CC:       WritePrecompLSB = 00
+Byte:00CD:       ReducedCurrentMSB = 00
+Byte:00CE:       ReducedCurrentMDB = 00
+Byte:00CF:       ReducedCurrentLSB = 00
+Byte:00D0:       StepRateMSB = 00
+Byte:00D1:       StepRateLSB = 00
+Byte:00D2:       LandingZoneMSB = 00
+Byte:00D3:       LandingZoneMDB = 00
+Byte:00D4:       LandingZoneLSB = 00
+Byte:00D5:       PositionLocking = 00
+Byte:00D6:       RotationalOffset = 00
+Byte:00D8:       RotationRateMSB = 1C
+Byte:00D9:       RotationRateLSB = 20
+
+           VerifyError Mode Page
+              VerifyError Group
+Byte:00DE:       VerifyRecoveryFlags = 00
+Byte:00DE:           Bit:0, VE_DISABLE_CORRECTION = 0
+Byte:00DE:           Bit:1, VE_DISABLE_TRANSFER_ON_ERROR = 0
+Byte:00DE:           Bit:2, VE_POST_ERROR = 0
+Byte:00DE:           Bit:3, VE_ENABLE_EARLY_RECOVERY = 0
+Byte:00DF:       VerifyRetryCount = 10
+Byte:00E0:       VerifyCorrectionSpan = FF
+Byte:00E6:       VerifyTimeLimitMSB = FF
+Byte:00E7:       VerifyTimeLimitLSB = FF
+
+           CacheControl Mode Page
+              CacheControl Group
+Byte:00EA:       CacheFlags = 14
+Byte:00EA:           Bit:0, READ_CACHING_DISABLED_ON_POWER_UP = 0
+Byte:00EA:           Bit:1, MULTIPLICATION_FACTOR = 0
+Byte:00EA:           Bit:2, WRITE_CACHING_ENABLED_ON_POWER_UP = 1
+Byte:00EA:           Bit:4, DISCONTINUITY = 1
+Byte:00EA:           Bit:5, CACHING_ANALYSIS_PERMITTED = 0
+Byte:00EA:           Bit:6, ABORT_PREFETCH = 0
+Byte:00EA:           Bit:7, DISABLE_ADAPTIVE_READ_AHEAD = 0
+Byte:00EB:       RetentionPriority = 00
+Byte:00EC:       DisablePrefetchLengthMSB = FF
+Byte:00ED:       DisablePrefetchLengthLSB = FF
+Byte:00EE:       MinPrefetchMSB = 00
+Byte:00EF:       MinPrefetchLSB = 00
+Byte:00F0:       MaxPrefetchMSB = FF
+Byte:00F1:       MaxPrefetchLSB = FF
+Byte:00F2:       MaxPrefetchCeilingMSB = FF
+Byte:00F3:       MaxPrefetchCeilingLSB = FF
+Byte:00F4:       SpecialCacheFlags = 80
+Byte:00F4:           Bit:5, READ_LOOKAHEAD_DISABLED_ON_POWER_UP = 0
+Byte:00F4:           Bit:7, FORCE_SEQUENTIAL_WRITE = 1
+Byte:00F5:       CacheSegmentNum = 20
+Byte:00F6:       CacheSegSizeMSB = 00
+Byte:00F7:       CacheSegSizeLSB = 00
+Byte:00F9:       NonCacheSegSizeMSB = 00
+Byte:00FA:       NonCacheSegSizeMDB = 00
+Byte:00FB:       NonCacheSegSizeLSB = 00
+
+           ControlMode Mode Page
+              ControlMode Group
+Byte:00FE:       LogFlags = 02
+Byte:00FF:       QueueFlags = 00
+Byte:0100:       AllegianceFlags = 00
+Byte:0102:       RAERHoldOffMSB = 00
+Byte:0103:       RAERHoldOffLSB = 00
+Byte:0104:       BusyTimeoutMSB = 00
+Byte:0105:       BusyTimeoutLSB = 00
+Byte:0106:       ExtendedDstestTimeMSB = 00
+Byte:0107:       ExtendedDstestTimeLSB = 00
+
+           PowerCondition Mode Page
+              PowerCondition Group
+Byte:010B:       PowerFlags = 02
+Byte:010B:           Bit:0, STANDBY = 0
+Byte:010B:           Bit:1, IDLE = 1
+Byte:010C:       IdleTimerMSB = 00
+Byte:010D:       IdleTimerNMSB = 00
+Byte:010E:       IdleTimerNLSB = 00
+Byte:010F:       IdleTimerLSB = 05
+Byte:0110:       StandbyTimerMSB = 00
+Byte:0111:       StandbyTimerNMSB = 00
+Byte:0112:       StandbyTimerNLSB = 00
+Byte:0113:       StandbyTimerLSB = 04
+
+           BackgroundMediaScan Mode Page
+              BGMS Group
+Byte:0117:       BGMSBusIdleIn100ms = 05
+Byte:0118:       OtherScanFlags = 00
+Byte:0118:           Bit:0, IRAW_ENABLE = 0
+Byte:0118:           Bit:1, IRAW_DISABLE_REASSIGNMENTS = 0
+Byte:0119:       IRAWWriteCachePercentage = 00
+Byte:011A:       IRAWDelayInMilliSecs = 00
+Byte:011B:       IRAWMaxQDepth = 00
+Byte:011C:       BGMSFlags = 00
+Byte:011C:           Bit:1, BGMS_DISABLE_DATA_REFRESH = 0
+Byte:011C:           Bit:2, BGMS_DISABLE_TEMPERATURE_LIMITATION = 0
+Byte:011D:       BGMSECCTLevel = 0A
+Byte:0124:       ReadAfterWriteControl = 31
+Byte:0124:           Bit:0, MP_RAW_ENABLE_BIT = 1
+Byte:0124:           Bit:1, MP_RAW_TRIP_1ST_N_WRITES = 0
+Byte:0124:           Bit:2, MP_RAW_FORCE_RAW_MODE = 0
+Byte:0124:           Bit:3, MP_RAW_UDS_DEBUG_MODE = 0
+Byte:0124:           Bit:4, MP_RAW_DISABLE_AR_ON_GOOD_READ = 1
+Byte:0124:           Bit:5, MP_RAW_DISABLE_SOFT_AR = 1
+Byte:0124:           Bit:6, MP_RAW_DISABLE_SERIAL_DEBUG_MSG = 0
+Byte:0125:       NWritesAfterSWDFail = 08
+Byte:0126:       NWritesAfterRAWFail = 08
+Byte:0127:       NWritesAfterIRAWFail = 08
+Byte:0128:       N1stWrites = 00
+Byte:0129:       RAWOnColdThreshold = 05
+Byte:012A:       RAWOnHotThreshold = 44
+Byte:012B:       RAWATAMode = 02
+Byte:012C:       RAWVerifyNSectors = 00 00 01 00
+Byte:0130:       RAWVerifyNSectorsATAMode3 = 00 00
+Byte:0132:       NWritesAfterSWDSumFail = 08
+Byte:0134:       SWDControl = 01
+Byte:0134:           Bit:0, MP_SWD_ENABLE_BIT = 1
+Byte:0134:           Bit:1, MP_SWD_DONT_REPORT_BIT = 0
+Byte:0134:           Bit:2, MP_SWD_DEBUG_MODE_BIT = 0
+Byte:0135:       SWDDvgasEventsBeforeFail = 08
+Byte:0136:       SWDRvgasEventsBeforeFail = 08
+Byte:0137:       SWDFvgasEventsBeforeFail = 08
+Byte:0138:       SWDSumOfEventsBeforeFail = 08
+Byte:013C:       DOSOughtToScanThreshold = 02
+Byte:013D:       DOSNeedToScanThreshold = 04
+Byte:013E:       DOSNeedToGraceMilliseconds = 00 14
+Byte:0140:       DOSNeedToRegraceMilliseconds = 00 14
+Byte:0142:       DOSNeedToMinimumScanMilliseconds = 00 64
+Byte:0144:       RAWOnForNPowerCycles = 00 00
+Byte:0146:       RAWOnForNHours = 00 00
+Byte:0148:       RAWOnForNSpinups = 00 00
+
+           UnifiedDebugGeneral Mode Page
+              UDSGeneral Group
+Byte:014E:       Revision = 00
+Byte:014F:       GlobalTraceTriggerFlags = 70
+Byte:014F:           Bit:3, UDS_GEN_SVIN_BIT = 0
+Byte:014F:           Bit:4, UDS_GEN_SVEN_BIT = 1
+Byte:014F:           Bit:5, UDS_GEN_GTGE_BIT = 1
+Byte:014F:           Bit:6, UDS_GEN_TREN_BIT = 1
+Byte:014F:           Bit:7, UDS_GEN_TGTD_BIT = 0
+Byte:0150:       MethodParameterFlags = 00
+Byte:0150:           Bit:7, UDS_CLR = 0
+Byte:0154:       DetailedExternalTriggerFlags = 00
+Byte:0156:       ErrorTypeMSB = 00
+Byte:0157:       ErrorTypeLSB = 00
+Byte:0158:       ErrorLBABigEndian = 00 00 00 00 00 00 00 00
+                 ''
+Byte:0164:       AutomaticTraceSaveFlags = 80
+Byte:0164:           Bit:5, UDS_GEN_INTR_BIT = 0
+Byte:0164:           Bit:6, UDS_GEN_DTFS_BIT = 0
+Byte:0164:           Bit:7, UDS_GEN_TSEN_BIT = 1
+Byte:0166:       MSBAutomaticTraceSaveIntervalInMinutes = 00
+Byte:0167:       LSBAutomaticTraceSaveIntervalInMinutes = 78
+Byte:0168:       MSBMinimumIdleTimeBeforeAutoTraceSaveInMilliseconds = 00
+Byte:0169:       LSBMinimumIdleTimeBeforeAutoTraceSaveInMilliseconds = C8
+Byte:016A:       TimestampFormatIdentifierMSB = 00
+Byte:016B:       TimestampFormatIdentifierLSB = 00
+Byte:016C:       CustomerSystemTimeInCustUniqueFormat = 00 00 00 00 00 00 00 00
+                 ''
+
+           DriveNativeInfo Mode Page
+              DriveNativeInfo Group
+Byte:018E:       PartNumber = 30 32 37 4A 4A 30 44 54 58
+                 '027JJ0DTX'
+Byte:0197:       PartNumberWhitespacePad = 20 20 20 20 20 20 20 00
+                 '       '
+Byte:019F:       PartNumberPad = 00
+Byte:01A0:       ProcessControlVersion = 00 00
+Byte:01A2:       CongenConfigurationState = 00
+Byte:01A3:       WrittenCount = 00
+Byte:01A4:       InternalSeagateModelNumber =
+                 53 54 33 32 35 30 33 31 31 41 53 20 20 20 20 20
+                 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+                 20 20 20 20 20 20 20 20
+                 'ST3250311AS                             '
+Byte:01CC:       BuildFlags = 00 00
+Byte:01CC:           Bit:0, QNR_SUPPORTED = 0
+Byte:01CE:       RealTimeUpdatedFlags = 08 00
+Byte:01CE:           Bit:3, CONGEN_READ_FROM_MEDIA = 1
+
+           ANSIBackgroundMediaScan Mode Page
+              ANSIBackgroundMediaScan Group
+Byte:01D4:       BGMSFlags = 01
+Byte:01D4:           Bit:0, BGMS_ENABLE = 1
+Byte:01D5:       Prescan = 00
+Byte:01D5:           Bit:0, BGMS_PRESCAN = 0
+Byte:01D6:       BGMSIntervalTimeHoursMSB = 00
+Byte:01D7:       BGMSIntervalTimeHoursLSB = 28
+Byte:01D8:       PrescanTimeoutHoursMSB = 00
+Byte:01D9:       PrescanTimeoutHoursLSB = 18
+
+           UDSFastTraceClassesLevels Mode Page
+              UDSFastTrace Group
+Byte:01E4:       Revision = 00
+Byte:01E5:       FastTraceLevels_0 = 11
+Byte:01E6:       FastTraceLevels_1 = 11
+Byte:01E7:       FastTraceLevels_2 = 11
+Byte:01E8:       FastTraceLevels_3 = 11
+Byte:01E9:       FastTraceLevels_4 = 11
+Byte:01EA:       FastTraceLevels_5 = 11
+Byte:01EB:       FastTraceLevels_6 = 11
+Byte:01EC:       FastTraceLevels_7 = 12
+Byte:01ED:       FastTraceLevels_8 = 11
+Byte:01EE:       FastTraceLevels_9 = 11
+Byte:01EF:       FastTraceLevels_10 = 10
+Byte:01F0:       FastTraceLevels_11 = 11
+Byte:01F1:       FastTraceLevels_12 = 11
+Byte:01F2:       FastTraceLevels_13 = 11
+Byte:01F3:       FastTraceLevels_14 = 11
+Byte:01F4:       FastTraceLevels_15 = 11
+Byte:01F5:       FastTraceLevels_16 = 11
+Byte:01F6:       FastTraceLevels_17 = 11
+Byte:01F7:       FastTraceLevels_18 = 11
+Byte:01F8:       FastTraceLevels_19 = 11
+Byte:01F9:       FastTraceLevels_20 = 11
+Byte:01FA:       FastTraceLevels_21 = 11
+Byte:01FB:       FastTraceLevels_22 = 11
+Byte:01FC:       FastTraceLevels_23 = 11
+Byte:01FD:       FastTraceLevels_24 = 11
+Byte:01FE:       FastTraceLevels_25 = 11
+Byte:01FF:       FastTraceLevels_26 = 11
+Byte:0200:       FastTraceLevels_27 = 11
+Byte:0201:       FastTraceLevels_28 = 11
+Byte:0202:       FastTraceLevels_29 = 11
+Byte:0203:       FastTraceLevels_30 = 11
+Byte:0204:       FastTraceLevels_31 = 10
+
+           UDSTriggerControl Mode Page
+              UDSTrigger Group
+Byte:020C:       Revision = 00
+Byte:0210:       TriggerControlFlags1_0 = 00
+Byte:0214:       TriggerCaptureFlags1_0 = 00
+Byte:0215:       TriggerCaptureFlags2_0 = 00
+Byte:0216:       SpecialTriggerCaptureFlags_0 = 00
+Byte:0218:       TriggerResponseFlags1_0 = 00
+Byte:0219:       TriggerResponseFlags2_0 = 00
+Byte:021A:       SpecialTriggerResponseFlags_0 = 00
+Byte:021C:       TriggerControlFlags1_1 = 00
+Byte:0220:       TriggerCaptureFlags1_1 = 00
+Byte:0221:       TriggerCaptureFlags2_1 = 00
+Byte:0222:       SpecialTriggerCaptureFlags_1 = 00
+Byte:0224:       TriggerResponseFlags1_1 = 00
+Byte:0225:       TriggerResponseFlags2_1 = 00
+Byte:0226:       SpecialTriggerResponseFlags_1 = 00
+Byte:0228:       TriggerControlFlags1_2 = 80
+Byte:022C:       TriggerCaptureFlags1_2 = F2
+Byte:022D:       TriggerCaptureFlags2_2 = E8
+Byte:022E:       SpecialTriggerCaptureFlags_2 = 80
+Byte:0230:       TriggerResponseFlags1_2 = 00
+Byte:0231:       TriggerResponseFlags2_2 = A0
+Byte:0232:       SpecialTriggerResponseFlags_2 = 80
+Byte:0234:       TriggerControlFlags1_3 = 80
+Byte:0238:       TriggerCaptureFlags1_3 = F2
+Byte:0239:       TriggerCaptureFlags2_3 = E8
+Byte:023A:       SpecialTriggerCaptureFlags_3 = 80
+Byte:023C:       TriggerResponseFlags1_3 = 00
+Byte:023D:       TriggerResponseFlags2_3 = A0
+Byte:023E:       SpecialTriggerResponseFlags_3 = 80
+Byte:0240:       TriggerControlFlags1_4 = 80
+Byte:0244:       TriggerCaptureFlags1_4 = F2
+Byte:0245:       TriggerCaptureFlags2_4 = E8
+Byte:0246:       SpecialTriggerCaptureFlags_4 = 80
+Byte:0248:       TriggerResponseFlags1_4 = 02
+Byte:0249:       TriggerResponseFlags2_4 = A0
+Byte:024A:       SpecialTriggerResponseFlags_4 = 80
+Byte:024C:       TriggerControlFlags1_5 = 80
+Byte:0250:       TriggerCaptureFlags1_5 = F2
+Byte:0251:       TriggerCaptureFlags2_5 = E8
+Byte:0252:       SpecialTriggerCaptureFlags_5 = 80
+Byte:0254:       TriggerResponseFlags1_5 = 00
+Byte:0255:       TriggerResponseFlags2_5 = A0
+Byte:0256:       SpecialTriggerResponseFlags_5 = 80
+Byte:0258:       TriggerControlFlags1_6 = 80
+Byte:025C:       TriggerCaptureFlags1_6 = 71
+Byte:025D:       TriggerCaptureFlags2_6 = C8
+Byte:025E:       SpecialTriggerCaptureFlags_6 = 80
+Byte:0260:       TriggerResponseFlags1_6 = 00
+Byte:0261:       TriggerResponseFlags2_6 = A0
+Byte:0262:       SpecialTriggerResponseFlags_6 = 80
+Byte:0264:       TriggerControlFlags1_7 = 80
+Byte:0268:       TriggerCaptureFlags1_7 = 71
+Byte:0269:       TriggerCaptureFlags2_7 = C8
+Byte:026A:       SpecialTriggerCaptureFlags_7 = 80
+Byte:026C:       TriggerResponseFlags1_7 = 00
+Byte:026D:       TriggerResponseFlags2_7 = A0
+Byte:026E:       SpecialTriggerResponseFlags_7 = 80
+Byte:0270:       TriggerControlFlags1_8 = 80
+Byte:0274:       TriggerCaptureFlags1_8 = F2
+Byte:0275:       TriggerCaptureFlags2_8 = E8
+Byte:0276:       SpecialTriggerCaptureFlags_8 = 80
+Byte:0278:       TriggerResponseFlags1_8 = 00
+Byte:0279:       TriggerResponseFlags2_8 = A0
+Byte:027A:       SpecialTriggerResponseFlags_8 = 80
+Byte:027C:       TriggerControlFlags1_9 = 80
+Byte:0280:       TriggerCaptureFlags1_9 = F2
+Byte:0281:       TriggerCaptureFlags2_9 = E8
+Byte:0282:       SpecialTriggerCaptureFlags_9 = 80
+Byte:0284:       TriggerResponseFlags1_9 = 00
+Byte:0285:       TriggerResponseFlags2_9 = A0
+Byte:0286:       SpecialTriggerResponseFlags_9 = 80
+Byte:0288:       TriggerControlFlags1_10 = 00
+Byte:028C:       TriggerCaptureFlags1_10 = 11
+Byte:028D:       TriggerCaptureFlags2_10 = C8
+Byte:028E:       SpecialTriggerCaptureFlags_10 = 80
+Byte:0290:       TriggerResponseFlags1_10 = 00
+Byte:0291:       TriggerResponseFlags2_10 = A0
+Byte:0292:       SpecialTriggerResponseFlags_10 = 80
+Byte:0294:       TriggerControlFlags1_11 = 80
+Byte:0298:       TriggerCaptureFlags1_11 = F2
+Byte:0299:       TriggerCaptureFlags2_11 = E8
+Byte:029A:       SpecialTriggerCaptureFlags_11 = 80
+Byte:029C:       TriggerResponseFlags1_11 = 00
+Byte:029D:       TriggerResponseFlags2_11 = A0
+Byte:029E:       SpecialTriggerResponseFlags_11 = 80
+Byte:02A0:       TriggerControlFlags1_12 = 80
+Byte:02A4:       TriggerCaptureFlags1_12 = F2
+Byte:02A5:       TriggerCaptureFlags2_12 = E8
+Byte:02A6:       SpecialTriggerCaptureFlags_12 = 80
+Byte:02A8:       TriggerResponseFlags1_12 = 00
+Byte:02A9:       TriggerResponseFlags2_12 = A0
+Byte:02AA:       SpecialTriggerResponseFlags_12 = 80
+Byte:02AC:       TriggerControlFlags1_13 = 00
+Byte:02B0:       TriggerCaptureFlags1_13 = 00
+Byte:02B1:       TriggerCaptureFlags2_13 = 00
+Byte:02B2:       SpecialTriggerCaptureFlags_13 = 00
+Byte:02B4:       TriggerResponseFlags1_13 = 00
+Byte:02B5:       TriggerResponseFlags2_13 = 00
+Byte:02B6:       SpecialTriggerResponseFlags_13 = 00
+Byte:02B8:       TriggerControlFlags1_14 = 80
+Byte:02BC:       TriggerCaptureFlags1_14 = F2
+Byte:02BD:       TriggerCaptureFlags2_14 = E8
+Byte:02BE:       SpecialTriggerCaptureFlags_14 = 80
+Byte:02C0:       TriggerResponseFlags1_14 = 00
+Byte:02C1:       TriggerResponseFlags2_14 = A0
+Byte:02C2:       SpecialTriggerResponseFlags_14 = 80
+Byte:02C4:       TriggerControlFlags1_15 = 80
+Byte:02C8:       TriggerCaptureFlags1_15 = 71
+Byte:02C9:       TriggerCaptureFlags2_15 = C8
+Byte:02CA:       SpecialTriggerCaptureFlags_15 = 80
+Byte:02CC:       TriggerResponseFlags1_15 = 00
+Byte:02CD:       TriggerResponseFlags2_15 = A0
+Byte:02CE:       SpecialTriggerResponseFlags_15 = 80
+Byte:02D0:       TriggerControlFlags1_16 = 00
+Byte:02D4:       TriggerCaptureFlags1_16 = F2
+Byte:02D5:       TriggerCaptureFlags2_16 = C8
+Byte:02D6:       SpecialTriggerCaptureFlags_16 = 80
+Byte:02D8:       TriggerResponseFlags1_16 = 00
+Byte:02D9:       TriggerResponseFlags2_16 = A0
+Byte:02DA:       SpecialTriggerResponseFlags_16 = 80
+Byte:02DC:       TriggerControlFlags1_17 = 00
+Byte:02E0:       TriggerCaptureFlags1_17 = 00
+Byte:02E1:       TriggerCaptureFlags2_17 = 00
+Byte:02E2:       SpecialTriggerCaptureFlags_17 = 00
+Byte:02E4:       TriggerResponseFlags1_17 = 00
+Byte:02E5:       TriggerResponseFlags2_17 = 00
+Byte:02E6:       SpecialTriggerResponseFlags_17 = 00
+Byte:02E8:       TriggerControlFlags1_18 = 80
+Byte:02EC:       TriggerCaptureFlags1_18 = 71
+Byte:02ED:       TriggerCaptureFlags2_18 = C8
+Byte:02EE:       SpecialTriggerCaptureFlags_18 = 80
+Byte:02F0:       TriggerResponseFlags1_18 = 00
+Byte:02F1:       TriggerResponseFlags2_18 = A0
+Byte:02F2:       SpecialTriggerResponseFlags_18 = 80
+Byte:02F4:       TriggerControlFlags1_19 = 00
+Byte:02F8:       TriggerCaptureFlags1_19 = 00
+Byte:02F9:       TriggerCaptureFlags2_19 = 00
+Byte:02FA:       SpecialTriggerCaptureFlags_19 = 00
+Byte:02FC:       TriggerResponseFlags1_19 = 00
+Byte:02FD:       TriggerResponseFlags2_19 = 00
+Byte:02FE:       SpecialTriggerResponseFlags_19 = 00
+Byte:0300:       TriggerControlFlags1_20 = 00
+Byte:0304:       TriggerCaptureFlags1_20 = 00
+Byte:0305:       TriggerCaptureFlags2_20 = 00
+Byte:0306:       SpecialTriggerCaptureFlags_20 = 00
+Byte:0308:       TriggerResponseFlags1_20 = 00
+Byte:0309:       TriggerResponseFlags2_20 = 00
+Byte:030A:       SpecialTriggerResponseFlags_20 = 00
+Byte:030C:       TriggerControlFlags1_21 = 00
+Byte:0310:       TriggerCaptureFlags1_21 = 00
+Byte:0311:       TriggerCaptureFlags2_21 = 00
+Byte:0312:       SpecialTriggerCaptureFlags_21 = 00
+Byte:0314:       TriggerResponseFlags1_21 = 00
+Byte:0315:       TriggerResponseFlags2_21 = 00
+Byte:0316:       SpecialTriggerResponseFlags_21 = 00
+
+           UDSTraceBufferConfig Mode Page
+              UDSBuffer Group
+Byte:031C:       Revision = 00
+Byte:0320:       MinimumAllocationInTraceBlocksMSB_0 = 00
+Byte:0321:       MinimumAllocationInTraceBlocksLSB_0 = 05
+Byte:0322:       TraceBufferControlFlags1_0 = 80
+Byte:0324:       MinimumAllocationInTraceBlocksMSB_1 = 00
+Byte:0325:       MinimumAllocationInTraceBlocksLSB_1 = 00
+Byte:0326:       TraceBufferControlFlags1_1 = 00
+Byte:0328:       MinimumAllocationInTraceBlocksMSB_2 = 00
+Byte:0329:       MinimumAllocationInTraceBlocksLSB_2 = 00
+Byte:032A:       TraceBufferControlFlags1_2 = 00
+Byte:032C:       MinimumAllocationInTraceBlocksMSB_3 = 00
+Byte:032D:       MinimumAllocationInTraceBlocksLSB_3 = 00
+Byte:032E:       TraceBufferControlFlags1_3 = 00
+Byte:0330:       MinimumAllocationInTraceBlocksMSB_4 = 00
+Byte:0331:       MinimumAllocationInTraceBlocksLSB_4 = 00
+Byte:0332:       TraceBufferControlFlags1_4 = 00
+Byte:0334:       MinimumAllocationInTraceBlocksMSB_5 = 00
+Byte:0335:       MinimumAllocationInTraceBlocksLSB_5 = 00
+Byte:0336:       TraceBufferControlFlags1_5 = 00
+Byte:0338:       MinimumAllocationInTraceBlocksMSB_6 = 00
+Byte:0339:       MinimumAllocationInTraceBlocksLSB_6 = 00
+Byte:033A:       TraceBufferControlFlags1_6 = 00
+Byte:033C:       MinimumAllocationInTraceBlocksMSB_7 = 00
+Byte:033D:       MinimumAllocationInTraceBlocksLSB_7 = 00
+Byte:033E:       TraceBufferControlFlags1_7 = 00
+Byte:0340:       MinimumAllocationInTraceBlocksMSB_8 = 00
+Byte:0341:       MinimumAllocationInTraceBlocksLSB_8 = 00
+Byte:0342:       TraceBufferControlFlags1_8 = 00
+Byte:0344:       MinimumAllocationInTraceBlocksMSB_9 = 00
+Byte:0345:       MinimumAllocationInTraceBlocksLSB_9 = 00
+Byte:0346:       TraceBufferControlFlags1_9 = 00
+Byte:0348:       MinimumAllocationInTraceBlocksMSB_10 = 00
+Byte:0349:       MinimumAllocationInTraceBlocksLSB_10 = 00
+Byte:034A:       TraceBufferControlFlags1_10 = 00
+Byte:034C:       MinimumAllocationInTraceBlocksMSB_11 = 00
+Byte:034D:       MinimumAllocationInTraceBlocksLSB_11 = 00
+Byte:034E:       TraceBufferControlFlags1_11 = 00
+Byte:0350:       MinimumAllocationInTraceBlocksMSB_12 = 00
+Byte:0351:       MinimumAllocationInTraceBlocksLSB_12 = 00
+Byte:0352:       TraceBufferControlFlags1_12 = 00
+Byte:0354:       MinimumAllocationInTraceBlocksMSB_13 = 00
+Byte:0355:       MinimumAllocationInTraceBlocksLSB_13 = 00
+Byte:0356:       TraceBufferControlFlags1_13 = 00
+Byte:0358:       MinimumAllocationInTraceBlocksMSB_14 = 00
+Byte:0359:       MinimumAllocationInTraceBlocksLSB_14 = 00
+Byte:035A:       TraceBufferControlFlags1_14 = 00
+Byte:035C:       MinimumAllocationInTraceBlocksMSB_15 = 00
+Byte:035D:       MinimumAllocationInTraceBlocksLSB_15 = 00
+Byte:035E:       TraceBufferControlFlags1_15 = 00
+Byte:0360:       MinimumAllocationInTraceBlocksMSB_16 = 00
+Byte:0361:       MinimumAllocationInTraceBlocksLSB_16 = 00
+Byte:0362:       TraceBufferControlFlags1_16 = 00
+Byte:0364:       MinimumAllocationInTraceBlocksMSB_17 = 00
+Byte:0365:       MinimumAllocationInTraceBlocksLSB_17 = 00
+Byte:0366:       TraceBufferControlFlags1_17 = 00
+Byte:0368:       MinimumAllocationInTraceBlocksMSB_18 = 00
+Byte:0369:       MinimumAllocationInTraceBlocksLSB_18 = 00
+Byte:036A:       TraceBufferControlFlags1_18 = 00
+Byte:036C:       MinimumAllocationInTraceBlocksMSB_19 = 00
+Byte:036D:       MinimumAllocationInTraceBlocksLSB_19 = 00
+Byte:036E:       TraceBufferControlFlags1_19 = 00
+Byte:0370:       MinimumAllocationInTraceBlocksMSB_20 = 00
+Byte:0371:       MinimumAllocationInTraceBlocksLSB_20 = 00
+Byte:0372:       TraceBufferControlFlags1_20 = 00
+Byte:0374:       MinimumAllocationInTraceBlocksMSB_21 = 00
+Byte:0375:       MinimumAllocationInTraceBlocksLSB_21 = 00
+Byte:0376:       TraceBufferControlFlags1_21 = 00
+Byte:0378:       MinimumAllocationInTraceBlocksMSB_22 = 00
+Byte:0379:       MinimumAllocationInTraceBlocksLSB_22 = 00
+Byte:037A:       TraceBufferControlFlags1_22 = 00
+Byte:037C:       MinimumAllocationInTraceBlocksMSB_23 = 00
+Byte:037D:       MinimumAllocationInTraceBlocksLSB_23 = 00
+Byte:037E:       TraceBufferControlFlags1_23 = 00
+Byte:0380:       MinimumAllocationInTraceBlocksMSB_24 = 00
+Byte:0381:       MinimumAllocationInTraceBlocksLSB_24 = 00
+Byte:0382:       TraceBufferControlFlags1_24 = 00
+Byte:0384:       MinimumAllocationInTraceBlocksMSB_25 = 00
+Byte:0385:       MinimumAllocationInTraceBlocksLSB_25 = 00
+Byte:0386:       TraceBufferControlFlags1_25 = 00
+Byte:0388:       MinimumAllocationInTraceBlocksMSB_26 = 00
+Byte:0389:       MinimumAllocationInTraceBlocksLSB_26 = 00
+Byte:038A:       TraceBufferControlFlags1_26 = 00
+Byte:038C:       MinimumAllocationInTraceBlocksMSB_27 = 00
+Byte:038D:       MinimumAllocationInTraceBlocksLSB_27 = 00
+Byte:038E:       TraceBufferControlFlags1_27 = 00
+Byte:0390:       MinimumAllocationInTraceBlocksMSB_28 = 00
+Byte:0391:       MinimumAllocationInTraceBlocksLSB_28 = 00
+Byte:0392:       TraceBufferControlFlags1_28 = 00
+Byte:0394:       MinimumAllocationInTraceBlocksMSB_29 = 00
+Byte:0395:       MinimumAllocationInTraceBlocksLSB_29 = 00
+Byte:0396:       TraceBufferControlFlags1_29 = 00
+Byte:0398:       MinimumAllocationInTraceBlocksMSB_30 = 00
+Byte:0399:       MinimumAllocationInTraceBlocksLSB_30 = 00
+Byte:039A:       TraceBufferControlFlags1_30 = 00
+Byte:039C:       MinimumAllocationInTraceBlocksMSB_31 = 00
+Byte:039D:       MinimumAllocationInTraceBlocksLSB_31 = 00
+Byte:039E:       TraceBufferControlFlags1_31 = 00
+Byte:03A0:       MinimumAllocationInTraceBlocksMSB_32 = 00
+Byte:03A1:       MinimumAllocationInTraceBlocksLSB_32 = 00
+Byte:03A2:       TraceBufferControlFlags1_32 = 00
+Byte:03A4:       MinimumAllocationInTraceBlocksMSB_33 = 00
+Byte:03A5:       MinimumAllocationInTraceBlocksLSB_33 = 00
+Byte:03A6:       TraceBufferControlFlags1_33 = 00
+Byte:03A8:       MinimumAllocationInTraceBlocksMSB_34 = 00
+Byte:03A9:       MinimumAllocationInTraceBlocksLSB_34 = 00
+Byte:03AA:       TraceBufferControlFlags1_34 = 00
+Byte:03AC:       MinimumAllocationInTraceBlocksMSB_35 = 00
+Byte:03AD:       MinimumAllocationInTraceBlocksLSB_35 = 00
+Byte:03AE:       TraceBufferControlFlags1_35 = 00
+Byte:03B0:       MinimumAllocationInTraceBlocksMSB_36 = 00
+Byte:03B1:       MinimumAllocationInTraceBlocksLSB_36 = 00
+Byte:03B2:       TraceBufferControlFlags1_36 = 00
+Byte:03B4:       MinimumAllocationInTraceBlocksMSB_37 = 00
+Byte:03B5:       MinimumAllocationInTraceBlocksLSB_37 = 00
+Byte:03B6:       TraceBufferControlFlags1_37 = 00
+Byte:03B8:       MinimumAllocationInTraceBlocksMSB_38 = 00
+Byte:03B9:       MinimumAllocationInTraceBlocksLSB_38 = 00
+Byte:03BA:       TraceBufferControlFlags1_38 = 00
+Byte:03BC:       MinimumAllocationInTraceBlocksMSB_39 = 00
+Byte:03BD:       MinimumAllocationInTraceBlocksLSB_39 = 00
+Byte:03BE:       TraceBufferControlFlags1_39 = 00
+Byte:03C0:       MinimumAllocationInTraceBlocksMSB_40 = 00
+Byte:03C1:       MinimumAllocationInTraceBlocksLSB_40 = 00
+Byte:03C2:       TraceBufferControlFlags1_40 = 00
+Byte:03C4:       MinimumAllocationInTraceBlocksMSB_41 = 00
+Byte:03C5:       MinimumAllocationInTraceBlocksLSB_41 = 00
+Byte:03C6:       TraceBufferControlFlags1_41 = 00
+Byte:03C8:       MinimumAllocationInTraceBlocksMSB_42 = 00
+Byte:03C9:       MinimumAllocationInTraceBlocksLSB_42 = 00
+Byte:03CA:       TraceBufferControlFlags1_42 = 00
+Byte:03CC:       MinimumAllocationInTraceBlocksMSB_43 = 00
+Byte:03CD:       MinimumAllocationInTraceBlocksLSB_43 = 00
+Byte:03CE:       TraceBufferControlFlags1_43 = 00
+Byte:03D0:       MinimumAllocationInTraceBlocksMSB_44 = 00
+Byte:03D1:       MinimumAllocationInTraceBlocksLSB_44 = 00
+Byte:03D2:       TraceBufferControlFlags1_44 = 00
+Byte:03D4:       MinimumAllocationInTraceBlocksMSB_45 = 00
+Byte:03D5:       MinimumAllocationInTraceBlocksLSB_45 = 00
+Byte:03D6:       TraceBufferControlFlags1_45 = 00
+Byte:03D8:       MinimumAllocationInTraceBlocksMSB_46 = 00
+Byte:03D9:       MinimumAllocationInTraceBlocksLSB_46 = 00
+Byte:03DA:       TraceBufferControlFlags1_46 = 00
+Byte:03DC:       MinimumAllocationInTraceBlocksMSB_47 = 00
+Byte:03DD:       MinimumAllocationInTraceBlocksLSB_47 = 00
+Byte:03DE:       TraceBufferControlFlags1_47 = 00
+Byte:03E0:       MinimumAllocationInTraceBlocksMSB_48 = 00
+Byte:03E1:       MinimumAllocationInTraceBlocksLSB_48 = 00
+Byte:03E2:       TraceBufferControlFlags1_48 = 00
+Byte:03E4:       MinimumAllocationInTraceBlocksMSB_49 = 00
+Byte:03E5:       MinimumAllocationInTraceBlocksLSB_49 = 00
+Byte:03E6:       TraceBufferControlFlags1_49 = 00
+Byte:03E8:       MinimumAllocationInTraceBlocksMSB_50 = 00
+Byte:03E9:       MinimumAllocationInTraceBlocksLSB_50 = 00
+Byte:03EA:       TraceBufferControlFlags1_50 = 00
+Byte:03EC:       MinimumAllocationInTraceBlocksMSB_51 = 00
+Byte:03ED:       MinimumAllocationInTraceBlocksLSB_51 = 00
+Byte:03EE:       TraceBufferControlFlags1_51 = 00
+Byte:03F0:       MinimumAllocationInTraceBlocksMSB_52 = 00
+Byte:03F1:       MinimumAllocationInTraceBlocksLSB_52 = 00
+Byte:03F2:       TraceBufferControlFlags1_52 = 00
+Byte:03F4:       MinimumAllocationInTraceBlocksMSB_53 = 00
+Byte:03F5:       MinimumAllocationInTraceBlocksLSB_53 = 00
+Byte:03F6:       TraceBufferControlFlags1_53 = 00
+Byte:03F8:       MinimumAllocationInTraceBlocksMSB_54 = 00
+Byte:03F9:       MinimumAllocationInTraceBlocksLSB_54 = 00
+Byte:03FA:       TraceBufferControlFlags1_54 = 00
+Byte:03FC:       MinimumAllocationInTraceBlocksMSB_55 = 00
+Byte:03FD:       MinimumAllocationInTraceBlocksLSB_55 = 00
+Byte:03FE:       TraceBufferControlFlags1_55 = 00
+Byte:0400:       MinimumAllocationInTraceBlocksMSB_56 = 00
+Byte:0401:       MinimumAllocationInTraceBlocksLSB_56 = 00
+Byte:0402:       TraceBufferControlFlags1_56 = 00
+Byte:0404:       MinimumAllocationInTraceBlocksMSB_57 = 00
+Byte:0405:       MinimumAllocationInTraceBlocksLSB_57 = 00
+Byte:0406:       TraceBufferControlFlags1_57 = 00
+Byte:0408:       MinimumAllocationInTraceBlocksMSB_58 = 00
+Byte:0409:       MinimumAllocationInTraceBlocksLSB_58 = 00
+Byte:040A:       TraceBufferControlFlags1_58 = 00
+Byte:040C:       MinimumAllocationInTraceBlocksMSB_59 = 00
+Byte:040D:       MinimumAllocationInTraceBlocksLSB_59 = 00
+Byte:040E:       TraceBufferControlFlags1_59 = 00
+Byte:0410:       MinimumAllocationInTraceBlocksMSB_60 = 00
+Byte:0411:       MinimumAllocationInTraceBlocksLSB_60 = 00
+Byte:0412:       TraceBufferControlFlags1_60 = 00
+Byte:0414:       MinimumAllocationInTraceBlocksMSB_61 = 00
+Byte:0415:       MinimumAllocationInTraceBlocksLSB_61 = 00
+Byte:0416:       TraceBufferControlFlags1_61 = 00
+Byte:0418:       MinimumAllocationInTraceBlocksMSB_62 = 00
+Byte:0419:       MinimumAllocationInTraceBlocksLSB_62 = 00
+Byte:041A:       TraceBufferControlFlags1_62 = 00
+Byte:041C:       MinimumAllocationInTraceBlocksMSB_63 = 00
+Byte:041D:       MinimumAllocationInTraceBlocksLSB_63 = 00
+Byte:041E:       TraceBufferControlFlags1_63 = 00
+Byte:0420:       MinimumAllocationInTraceBlocksMSB_64 = 00
+Byte:0421:       MinimumAllocationInTraceBlocksLSB_64 = 00
+Byte:0422:       TraceBufferControlFlags1_64 = 00
+Byte:0424:       MinimumAllocationInTraceBlocksMSB_65 = 00
+Byte:0425:       MinimumAllocationInTraceBlocksLSB_65 = 00
+Byte:0426:       TraceBufferControlFlags1_65 = 00
+Byte:0428:       MinimumAllocationInTraceBlocksMSB_66 = 00
+Byte:0429:       MinimumAllocationInTraceBlocksLSB_66 = 00
+Byte:042A:       TraceBufferControlFlags1_66 = 00
+Byte:042C:       MinimumAllocationInTraceBlocksMSB_67 = 00
+Byte:042D:       MinimumAllocationInTraceBlocksLSB_67 = 00
+Byte:042E:       TraceBufferControlFlags1_67 = 00
+Byte:0430:       MinimumAllocationInTraceBlocksMSB_68 = 00
+Byte:0431:       MinimumAllocationInTraceBlocksLSB_68 = 00
+Byte:0432:       TraceBufferControlFlags1_68 = 00
+Byte:0434:       MinimumAllocationInTraceBlocksMSB_69 = 00
+Byte:0435:       MinimumAllocationInTraceBlocksLSB_69 = 00
+Byte:0436:       TraceBufferControlFlags1_69 = 00
+Byte:0438:       MinimumAllocationInTraceBlocksMSB_70 = 00
+Byte:0439:       MinimumAllocationInTraceBlocksLSB_70 = 00
+Byte:043A:       TraceBufferControlFlags1_70 = 00
+Byte:043C:       MinimumAllocationInTraceBlocksMSB_71 = 00
+Byte:043D:       MinimumAllocationInTraceBlocksLSB_71 = 00
+Byte:043E:       TraceBufferControlFlags1_71 = 00
+Byte:0440:       MinimumAllocationInTraceBlocksMSB_72 = 00
+Byte:0441:       MinimumAllocationInTraceBlocksLSB_72 = 00
+Byte:0442:       TraceBufferControlFlags1_72 = 00
+Byte:0444:       MinimumAllocationInTraceBlocksMSB_73 = 00
+Byte:0445:       MinimumAllocationInTraceBlocksLSB_73 = 00
+Byte:0446:       TraceBufferControlFlags1_73 = 00
+Byte:0448:       MinimumAllocationInTraceBlocksMSB_74 = 00
+Byte:0449:       MinimumAllocationInTraceBlocksLSB_74 = 00
+Byte:044A:       TraceBufferControlFlags1_74 = 00
+Byte:044C:       MinimumAllocationInTraceBlocksMSB_75 = 00
+Byte:044D:       MinimumAllocationInTraceBlocksLSB_75 = 00
+Byte:044E:       TraceBufferControlFlags1_75 = 00
+Byte:0450:       MinimumAllocationInTraceBlocksMSB_76 = 00
+Byte:0451:       MinimumAllocationInTraceBlocksLSB_76 = 00
+Byte:0452:       TraceBufferControlFlags1_76 = 00
+
+           Congen Mode Page
+              Congen Group
+Byte:0458:       NumDefaultATCyls = FF 3F
+Byte:045A:       NumDefaultATHeads = 10 00
+Byte:045C:       NumDefaultATSectors = 3F 00
+Byte:045E:       NumECCBytesForLongCmds = 04 00
+Byte:0460:       MaximumMultipleSize = 10
+Byte:0461:       LogicalSectorAlignment = 00
+Byte:0462:       PIOModeTiming = 00 02
+Byte:0464:       DMAModeTiming = 00 02
+Byte:0466:       NumCurrentATCyls = FF 3F
+Byte:0468:       NumCurrentATHeads = 10 00
+Byte:046A:       NumCurrentATSectors = 3F 00
+Byte:046C:       CurrentMultipleSize = 10 00
+Byte:046E:       MultiwordDMAModesSupported = 07
+Byte:046E:           Bit:0, MULTIWORD_DMA_MODE_0_SUPPORTED = 1
+Byte:046E:           Bit:1, MULTIWORD_DMA_MODE_1_SUPPORTED = 1
+Byte:046E:           Bit:2, MULTIWORD_DMA_MODE_2_SUPPORTED = 1
+Byte:046F:       UltraDMAModesSupported = 3F
+Byte:046F:           Bit:0, ULTRA_DMA_MODE0_SUPPORTED = 1
+Byte:046F:           Bit:1, ULTRA_DMA_MODE1_AND_BELOW_SUPPORTED = 1
+Byte:046F:           Bit:2, ULTRA_DMA_MODE2_AND_BELOW_SUPPORTED = 1
+Byte:046F:           Bit:3, ULTRA_DMA_MODE3_AND_BELOW_SUPPORTED = 1
+Byte:046F:           Bit:4, ULTRA_DMA_MODE4_AND_BELOW_SUPPORTED = 1
+Byte:046F:           Bit:5, ULTRA_DMA_MODE5_AND_BELOW_SUPPORTED = 1
+Byte:046F:           Bit:6, ULTRA_DMA_MODE6_AND_BELOW_SUPPORTED = 0
+Byte:0470:       AdvancedPIOModesSupported = 03 00
+Byte:0470:           Bit:0, PIO_MODE_3_SUPPORTED = 1
+Byte:0470:           Bit:1, PIO_MODE_4_SUPPORTED = 1
+Byte:0472:       MinimumMultiwordDMACycleTime = 78 00
+Byte:0474:       RecommendedMultiwordDMACycleTime = 78 00
+Byte:0476:       MinimumPIOTimeWithoutFlowControl = 78 00
+Byte:0478:       MinimumPIOTimeWithFlowControl = 78 00
+Byte:047A:       QDepth = 1F 00
+Byte:047C:       SATACapabilities = 0E 05
+Byte:047D:           Bit:0, SATA_NCQ_SUPPORTED = 1
+Byte:047D:           Bit:1, HOST_INITIATED_PHY_POWER_MANAGEMENT_SUPPORTED = 0
+Byte:047D:           Bit:2, SATA_PHY_EVENT_COUNTERS_SUPPORTED = 1
+Byte:047D:           Bit:3, UNLOAD_WHILE_NCQ_CMDS_OUTSTANDING_SUPPORTED = 0
+Byte:047D:           Bit:4, NCQ_PRIORITY_SUPPORTED = 0
+Byte:0480:       SATAFeaturesSupported = 48 00
+Byte:0480:           Bit:2, DMA_AUTOACTIVATE_SUPPORTED = 0
+Byte:0480:           Bit:3, DEVICE_INITIATED_POWER_MANAGEMENT_SUPPORTED = 1
+Byte:0480:           Bit:6, PRESERVE_SETTINGS_ON_COMRESET_SUPPORTED = 1
+Byte:0482:       SATAFeaturesEnabled = 40 00
+Byte:0482:           Bit:2, DMA_AUTOACTIVATE_ENABLED = 0
+Byte:0482:           Bit:3, DEVICE_INITIATED_POWER_MANAGEMENT_ENABLED = 0
+Byte:0482:           Bit:6, PRESERVE_SETTINGS_ON_COMRESET_ENABLED = 1
+Byte:0484:       MajorVersionNumber = F0 01
+Byte:0484:           Bit:1, ATAPI_1_SUPPORTED = 0
+Byte:0484:           Bit:2, ATAPI_2_SUPPORTED = 0
+Byte:0484:           Bit:3, ATAPI_3_SUPPORTED = 0
+Byte:0484:           Bit:4, ATAPI_4_SUPPORTED = 1
+Byte:0484:           Bit:5, ATAPI_5_SUPPORTED = 1
+Byte:0484:           Bit:6, ATAPI_6_SUPPORTED = 1
+Byte:0484:           Bit:7, ATAPI_7_SUPPORTED = 1
+Byte:0485:           Bit:0, ATAPI_8_ACS_SUPPORTED = 1
+Byte:0486:       MinorVersionNumber = 29 00
+Byte:0488:       CommandSetSupported = 6B 30
+Byte:0488:           Bit:0, SMART_SUPPORTED = 1
+Byte:0488:           Bit:1, SECURITY_MODE_FEATURE_SET_SUPPORTED = 1
+Byte:0488:           Bit:5, WRITE_CACHE_SUPPORTED = 1
+Byte:0488:           Bit:6, READ_LOOKAHEAD_SUPPORTED = 1
+Byte:0489:           Bit:2, HOST_PROTECTED_AREA_SUPPORTED = 0
+Byte:0489:           Bit:4, WRITE_BUFFER_CMD_SUPPORTED = 1
+Byte:0489:           Bit:5, READ_BUFFER_CMD_SUPPORTED = 1
+Byte:0489:           Bit:6, NOP_CMD_SUPPORTED = 0
+Byte:048A:       CommandSetsSupported = 01 7C
+Byte:048A:           Bit:1, READ_WRITE_DMA_QUEUED_SUPPORTED = 0
+Byte:048A:           Bit:3, ADVANCED_POWER_MANAGEMENT_SUPPORTED = 0
+Byte:048A:           Bit:5, POWER_UP_IN_STANDBY_SUPPORTED = 0
+Byte:048A:           Bit:6, SET_FEATURES_SPINUP_REQUIRED_SUPPORTED = 0
+Byte:048B:           Bit:0, SET_MAX_SECURITY_EXTENSION_SUPPORTED = 0
+Byte:048B:           Bit:1, AUTO_ACOUSTIC_MANAGEMENT_SUPPORTED = 0
+Byte:048B:           Bit:2, FOURTYEIGHT_BIT_SUPPORTED = 1
+Byte:048B:           Bit:3, DCO_COMMAND_SETS_SUPPORTED = 1
+Byte:048B:           Bit:4, FLUSH_CACHE_SUPPORTED = 1
+Byte:048B:           Bit:5, FLUSH_CACHE_EXT_SUPPORTED = 1
+Byte:048C:       CommandSetSupportedExtension = 63 41
+Byte:048C:           Bit:0, SMART_ERROR_LOGGING_SUPPORTED = 1
+Byte:048C:           Bit:1, SMART_SELF_TEST_SUPPORTED = 1
+Byte:048C:           Bit:2, MEDIA_SERIALNUMBER_SUPPORTED = 0
+Byte:048C:           Bit:4, STREAMING_FEATURE_SET_SUPPORTED = 0
+Byte:048C:           Bit:6, FUA_WRITE_EXT_COMMANDS_SUPPORTED = 1
+Byte:048C:           Bit:7, FUA_WRITE_QUEUED_EXT_COMMANDS_SUPPORTED = 0
+Byte:048D:           Bit:0, SIXTYFOUR_BIT_WWN_SUPPORTED = 1
+Byte:048D:           Bit:3, AV_LITE_SUPPORTED = 0
+Byte:048D:           Bit:4, AV_LITE_RC_WC_SUPPORTED = 0
+Byte:048D:           Bit:5, IDLE_IMMEDIATE_UNLOAD_SUPPORTED = 0
+Byte:048E:       CommandSetEnabled = 69 30
+Byte:048E:           Bit:0, SMART_ENABLED = 1
+Byte:048E:           Bit:1, SECURITY_MODE_FEATURE_SET_ENABLED = 0
+Byte:048E:           Bit:5, WRITE_CACHE_ENABLED = 1
+Byte:048E:           Bit:6, READ_LOOKAHEAD_ENABLED = 1
+Byte:048F:           Bit:2, HOST_PROTECTED_AREA_ENABLED = 0
+Byte:0490:       CommandSetsEnabled = 01 BC
+Byte:0490:           Bit:3, ADVANCED_POWER_MANAGEMENT_ENABLED = 0
+Byte:0490:           Bit:5, POWER_UP_IN_STANDBY_ENABLED = 0
+Byte:0490:           Bit:6, SET_FEATURES_SPINUP_REQUIRED_ENABLED = 0
+Byte:0490:           Bit:7, ADDRESS_OFFSET_RESERVED_AREA_BOOT = 0
+Byte:0491:           Bit:0, SET_MAX_SECURITY_EXTENSION_ENABLED = 0
+Byte:0491:           Bit:1, AUTO_ACOUSTIC_MANAGEMENT_ENABLED = 0
+Byte:0492:       CommandSetEnabledExtension = 63 41
+Byte:0492:           Bit:2, MEDIA_SERIALNUMBER_IS_VALID = 0
+Byte:0493:           Bit:3, AV_LITE_ENABLED = 0
+Byte:0493:           Bit:4, AV_LITE_RC_WC_ENABLED = 0
+Byte:0494:       FreeFallSensitivity = 00 00
+Byte:0496:       CurrentAPMValue = FE FE
+Byte:0498:       MasterPasswordRevisionCode = FE FF
+Byte:049A:       AcousticLevel = 00 D0
+Byte:049C:       StreamMinRequestSize = 00 00
+Byte:049E:       StreamXferTimeDMA = 00 00
+Byte:04A0:       StreamAccessLatency = 00 00
+Byte:04A2:       StreamPerformanceGranularity = 00 00 00 00
+Byte:04A6:       StreamXferTimePIO = 00 00
+Byte:04A8:       Max512ByteUnitsPerDownloadMicrocode = 80 00
+Byte:04AA:       PhysicalLogicalSectorSize = 00 00
+Byte:04AA:           Bit:0, TWO_X_LOG_SECTORS_PER_PHY_SECTOR_B0 = 0
+Byte:04AA:           Bit:1, TWO_X_LOG_SECTORS_PER_PHY_SECTOR_B1 = 0
+Byte:04AA:           Bit:2, TWO_X_LOG_SECTORS_PER_PHY_SECTOR_B2 = 0
+Byte:04AA:           Bit:3, TWO_X_LOG_SECTORS_PER_PHY_SECTOR_B3 = 0
+Byte:04AB:           Bit:4, DEV_LOG_SEC_LEN_GREATER_THAN_256W = 0
+Byte:04AB:           Bit:5, DEV_HAS_MUL_LOG_SECTORS_PER_PHY_SECTOR = 0
+Byte:04AC:       AVLiteWorstCaseTimer = 00 00
+Byte:04AE:       WordsPerLogicalSector = 00 01 00 00
+Byte:04B2:       ATACommandSetSupportedExt2 = 0E 40
+Byte:04B2:           Bit:1, WRITE_READ_VERIFY_SUPPORTED = 1
+Byte:04B2:           Bit:2, WRITE_UNCORRECTABLE_SUPPORTED = 1
+Byte:04B2:           Bit:3, READ_AND_WRITE_DMA_EXP_GPL_COMMANDS_SUPPORTED = 1
+Byte:04B2:           Bit:5, FREEFALL_SENSOR_SUPPORTED = 0
+Byte:04B2:           Bit:6, EXTENDED_POWER_CONDITIONS_SUPPORTED = 0
+Byte:04B4:       ATACommandSetEnabledExt2 = 08 40
+Byte:04B4:           Bit:1, WRITE_READ_VERIFY_ENABLED = 0
+Byte:04B4:           Bit:3, READ_AND_WRITE_DMA_EXP_GPL_COMMANDS_ENABLED = 1
+Byte:04B4:           Bit:5, FREEFALL_SENSOR_ENABLED_BY_DEFAULT = 0
+Byte:04B4:           Bit:6, EXTENDED_POWER_CONDITIONS_ENABLED = 0
+Byte:04B6:       ATATransportMajorRevisionNumber = 08 10
+Byte:04B8:       ATATransportMinorRevisionNumber = 00 00
+Byte:04BA:       ATSMARTDefaultFlags = 01 00
+Byte:04BA:           Bit:0, SMARTDEFAULTON = 1
+Byte:04BC:       ATSMARTConfig =
+                 2F 00 06 00 23 00 00 00 32 00 14 00 33 00 24 00
+                 2F 00 1E 00 32 00 00 00 33 00 61 00 32 00 14 00
+                 32 00 00 00 3A 00 00 00 22 00 2D 00 32 00 00 00
+                 32 00 00 00 32 00 00 00 22 00 00 00 3A 00 00 00
+                 32 00 00 00 30 00 00 00 3E 00 00 00 33 00 61 00
+                 32 00 00 00 32 00 24 00 00 00 00 00 00 00 00 00
+                 00 00 00 00 32 00 00 00 0E 00 1E 00 00 00 00 00
+                 00 00 00 00 00 00 00 00
+Byte:04BC:       SMART1Status = 2F 00
+Byte:04BE:       SMART1Threshold = 06
+Byte:04C0:       SMART2Status = 23 00
+Byte:04C2:       SMART2Threshold = 00
+Byte:04C4:       SMART3Status = 32 00
+Byte:04C6:       SMART3Threshold = 14
+Byte:04C8:       SMART4Status = 33 00
+Byte:04CA:       SMART4Threshold = 24
+Byte:04CC:       SMART5Status = 2F 00
+Byte:04CE:       SMART5Threshold = 1E
+Byte:04D0:       SMART6Status = 32 00
+Byte:04D2:       SMART6Threshold = 00
+Byte:04D4:       SMART7Status = 33 00
+Byte:04D6:       SMART7Threshold = 61
+Byte:04D8:       SMART8Status = 32 00
+Byte:04DA:       SMART8Threshold = 14
+Byte:04DC:       SMART9Status = 32 00
+Byte:04DE:       SMART9Threshold = 00
+Byte:04E0:       SMART10Status = 3A 00
+Byte:04E2:       SMART10Threshold = 00
+Byte:04E4:       SMART11Status = 22 00
+Byte:04E6:       SMART11Threshold = 2D
+Byte:04E8:       SMART12Status = 32 00
+Byte:04EA:       SMART12Threshold = 00
+Byte:04EC:       SMART13Status = 32 00
+Byte:04EE:       SMART13Threshold = 00
+Byte:04F0:       SMART14Status = 32 00
+Byte:04F2:       SMART14Threshold = 00
+Byte:04F4:       SMART15Status = 22 00
+Byte:04F6:       SMART15Threshold = 00
+Byte:04F8:       SMART16Status = 3A 00
+Byte:04FA:       SMART16Threshold = 00
+Byte:04FC:       SMART17Status = 32 00
+Byte:04FE:       SMART17Threshold = 00
+Byte:0500:       SMART18Status = 30 00
+Byte:0502:       SMART18Threshold = 00
+Byte:0504:       SMART19Status = 3E 00
+Byte:0506:       SMART19Threshold = 00
+Byte:0508:       SMART20Status = 33 00
+Byte:050A:       SMART20Threshold = 61
+Byte:050C:       SMART21Status = 32 00
+Byte:050E:       SMART21Threshold = 00
+Byte:0510:       SMART22Status = 32 00
+Byte:0512:       SMART22Threshold = 24
+Byte:0514:       SMART23Status = 00 00
+Byte:0516:       SMART23Threshold = 00
+Byte:0518:       SMART24Status = 00 00
+Byte:051A:       SMART24Threshold = 00
+Byte:051C:       SMART25Status = 00 00
+Byte:051E:       SMART25Threshold = 00
+Byte:0520:       SMART26Status = 32 00
+Byte:0522:       SMART26Threshold = 00
+Byte:0524:       SMART27Status = 0E 00
+Byte:0526:       SMART27Threshold = 1E
+Byte:0528:       SMART28Status = 00 00
+Byte:052A:       SMART28Threshold = 00
+Byte:052C:       SMART29Status = 00 00
+Byte:052E:       SMART29Threshold = 00
+Byte:0530:       SMART30Status = 00 00
+Byte:0532:       SMART30Threshold = 00
+Byte:0536:       SCTCommandSetSupported = 3B 10
+Byte:0536:           Bit:0, SCT_SUPPORTED_COMMAND_SET = 1
+Byte:0536:           Bit:1, SCT_SUPPORTED_LONG_SECTOR_ACCESS = 1
+Byte:0536:           Bit:2, SCT_SUPPORTED_LBA_SEGMENT_ACCESS = 0
+Byte:0536:           Bit:3, SCT_SUPPORTED_ERROR_RECOVERY_CONTROL = 1
+Byte:0536:           Bit:4, SCT_SUPPORTED_FEATURES_CONTROL = 1
+Byte:0536:           Bit:5, SCT_SUPPORTED_DATA_TABLE = 1
+Byte:0538:       SCTFanControlMaxOperatingTemp = 37
+Byte:0539:       SCTFanControlOverRangeTemp = 3C
+Byte:053A:       SCTFanControlUnderRangeTemp = 0A
+Byte:053B:       SCTFanControlMinOperatingTemp = 0E
+Byte:053C:       SCTVendorFlags = 07 00
+Byte:053C:           Bit:0, SCT_VENDORFLAGS_SEATOOLS = 1
+Byte:053C:           Bit:1, SCT_VENDORFLAGS_WRITE_SAME = 1
+Byte:053C:           Bit:2, SCT_VENDORFLAGS_CORRECTABLE_BIT = 1
+Byte:053D:           Bit:7, SCT_VENDORFLAGS_DEBUG_MODE = 0
+Byte:053E:       SCTTimerReadDefault = 00 00
+Byte:0540:       SCTTimerWriteDefault = 00 00
+Byte:0542:       SCTTenMsecCount = 00
+Byte:0543:       SCTPerformanceFlags = 00
+Byte:0544:       SCTTempDataTableSize = 80 00
+Byte:0546:       SCTSamplingPeriod = 0A 00
+Byte:0548:       SCTInterval = 3B 00
+Byte:054A:       ATAPadSlewRate = 00
+Byte:054B:       ATAIORDYPadControl = 00
+Byte:054C:       PreampHotTweak = 00
+Byte:054D:       PreampColdTweak = 00
+Byte:054E:       LubeMitigationRetries = 00 00
+Byte:0550:       LengthOfWriteSpaceToFlush = 00 00
+Byte:0552:       LengthOfWriteCommandToTriggerFlush = 00 00
+Byte:0554:       NDSLBAThresholdA = 00 00
+Byte:0556:       NDSLBAThresholdB = 00 00
+Byte:0558:       NDSPartitionDependencies = 00 00
+Byte:055A:       NDSODOffsetConfig = 00
+Byte:055B:       NDSIDOffsetConfig = 00
+Byte:055C:       APMTimer1mSec = 40 04
+Byte:055E:       APMTimer2mSec = 00 15
+Byte:0560:       APMStandByTimer = 20 00
+Byte:0562:       APMTimerForDither = 2C 01
+Byte:0564:       ReadDelayMinimum = 00
+Byte:0565:       WriteDelayMinimum = 00
+Byte:0566:       WriteDelayIncremental = 00
+Byte:0567:       ReadDelayIncremental = 00
+Byte:0568:       FeatureFlags = 9C A0 10 28
+Byte:0568:           Bit:0, WRITE_CONFIG_DATA_TO_FLASH = 0
+Byte:0568:           Bit:1, SPINUP_WRITE_FAULT_THRESHOLDS_ENABLED = 0
+Byte:0568:           Bit:2, IOEDC_CHECK_ENABLED = 1
+Byte:0568:           Bit:3, IOEDC_ERROR_ENABLED = 1
+Byte:0568:           Bit:4, DOWNLOAD_MICROCODE_FUTURE_USE_ONLY = 1
+Byte:0568:           Bit:5, SUPPRESS_SERIAL_PORT_PRINTS = 0
+Byte:0568:           Bit:6, DRQ_CLEAR_ON_PIO_READ_ERR_SUPPORTED = 0
+Byte:0568:           Bit:7, OFFLINE_SEEK_AWAY = 1
+Byte:0569:           Bit:0, DELAY_SLEEP_STANDBY_CMDCOMPLETE = 0
+Byte:0569:           Bit:1, IDLE_IMMEDIATE_UNLOAD_EMERGENCY = 0
+Byte:0569:           Bit:2, ENABLE_ALLOW_RAW_ERROR_RATE_UPDATE = 0
+Byte:0569:           Bit:3, OP_SHOCK_DETECTION_ENABLED = 0
+Byte:0569:           Bit:4, LOG99_CONTROL = 0
+Byte:0569:           Bit:5, READ_WRITE_LONG_EXTENDED_ENABLED = 1
+Byte:0569:           Bit:6, WRITE_REORDERING_DISABLED = 0
+Byte:0569:           Bit:7, ALLOW_AAM_FEATURE_SET = 1
+Byte:056A:           Bit:0, DATA_LOG_ENABLED = 0
+Byte:056A:           Bit:1, HOST_STREAM_RECORD_FIRST_ERROR_BLOCK = 0
+Byte:056A:           Bit:2, SAVE_ATA_COMMAND_HISTORY_TO_DISC = 0
+Byte:056A:           Bit:3, EIB_ON_POWERUP = 0
+Byte:056A:           Bit:4, LEFT_JUSTIFY_SERIAL_NUMBER = 1
+Byte:056A:           Bit:5, SUN_MICRO_MODEL_NUMBER_UPDATE = 0
+Byte:056A:           Bit:6, REVERTING_TO_POWER_ON_DEFAULTS_SUPPORTED = 0
+Byte:056A:           Bit:7, RIGHT_JUSTIFY_FIRMWARE_REVISION = 0
+Byte:056B:           Bit:0, SEGMENT_INITIALIZED = 0
+Byte:056B:           Bit:1, DISPLAY_SMART_COMMANDS_ON_SERIAL_PORT_ENABLED = 0
+Byte:056B:           Bit:2, DISABLE_SMART_AUTO_UPDATES = 0
+Byte:056B:           Bit:3, DISABLE_LEGACY_READ_WRITE_LONG = 1
+Byte:056B:           Bit:4, VERSION_ENFORCEMENT_SUPPORTED = 0
+Byte:056B:           Bit:5, ENABLE_MICKEY_CERT = 1
+Byte:056B:           Bit:6, RETAIN_AMPS_VALUE_ON_DOWNLOAD = 0
+Byte:056C:       PerformanceFlags = 04 3F
+Byte:056C:           Bit:0, REDUCED_RAW_TRANSITION_FLUSH = 0
+Byte:056C:           Bit:1, REDUCED_AV_RETRIES = 0
+Byte:056C:           Bit:2, ID_READ_PARAMETERS_FROM_CAP = 1
+Byte:056C:           Bit:4, VJIT_DISABLED = 0
+Byte:056C:           Bit:5, ZERO_LATENCY_RD_ENABLED = 0
+Byte:056D:           Bit:0, DAR_ENABLED = 1
+Byte:056D:           Bit:1, OFFLINE_SPARING_ENABLED = 1
+Byte:056D:           Bit:2, JIT3 = 1
+Byte:056D:           Bit:3, JIT2 = 1
+Byte:056D:           Bit:4, JIT1 = 1
+Byte:056D:           Bit:5, JIT0 = 1
+Byte:056D:           Bit:6, DISABLE_IDLE_ACTIVITY = 0
+Byte:056D:           Bit:7, ENABLE_SELF_SEEK = 0
+Byte:056E:       AggressivelyScanThisManyTimes = 00 00
+Byte:0570:       LongSeekEventTime = FF FF
+Byte:0572:       SleepStandbyDelay = 00 00
+Byte:0574:       CustomerUniques = 00 00 00 00
+Byte:0578:       CustomerType = 00 00 00 00
+Byte:057C:       AdditionalSATAFeatureConfig = 0B 00 00 00
+Byte:057C:           Bit:0, SATA_FORCE_EARLY_STATUS = 1
+Byte:057C:           Bit:1, SATA_EARLY_STATUS_FORCE_COMRESET = 1
+Byte:057C:           Bit:2, SATA_INTRACOMMAND_PHY_MANAGEMENT_ENABLED = 0
+Byte:057C:           Bit:3, SATA_ENABLE_PHY_PM_CALIBRATION = 1
+Byte:057C:           Bit:4, SATA_ENABLE_SPI_VIS_MODE = 0
+Byte:057C:           Bit:5, SATA_ENABLE_RERR_TESTING = 0
+Byte:057C:           Bit:6, SATA_ENABLE_SSC = 0
+Byte:057C:           Bit:7, SATA_EYE_DIAGRAM_TEST = 0
+Byte:057D:           Bit:0, SATA_DISABLE_PRIMITIVE_SCRAMBLING = 0
+Byte:057D:           Bit:1, SATA_ULTRA_AGGRESSIVE_INTER_COMMAND_PHY_SUPPORTED = 0
+Byte:057D:           Bit:2, SATA_ULTRA_AGGRESSIVE_INTRA_COMMAND_PHY_SUPPORTED = 0
+Byte:0580:       FactoryODScanMBytes = 00 00
+Byte:0582:       FactoryIDScanMBytes = 00 00
+Byte:0584:       MaxDSTSelfTestTime = E4 0C
+Byte:0586:       DSTShortTestTimeLimit = 78 00
+Byte:0588:       BootFlagsForROM = 02 00
+Byte:0588:           Bit:0, BOOT_FLAG_POWER_ON_IN_STANDBY = 0
+Byte:0588:           Bit:1, BOOT_FLAG_PARTIAL_OOB = 1
+Byte:0588:           Bit:2, USE_SMALL_ID_FORMAT = 0
+Byte:0588:           Bit:3, LOW_CURRENT_SPINUP = 0
+Byte:058A:       LastCongenWriteCaller = 00 00
+Byte:058C:       HostStreamJumpSizeInSectors = 00 00
+Byte:058E:       HostStreamTotalJumpSteps = 00
+Byte:058F:       SerialDebugLevel = 00
+Byte:0590:       DefaultStandbyTimer = 00
+Byte:0591:       ATAInterSectorTime = 08
+Byte:0592:       StandbyDelayBeforePostingStatus = 00 00
+Byte:0594:       StandbyPostingStatusFlags = 04 00
+Byte:0594:           Bit:0, ENABLE_WAIT_FOR_DRIVE_SPINDOWN_BEFORE_POSTING_STATUS_AFTER_STANDBY = 0
+Byte:0594:           Bit:1, ENABLE_HEADS_ON_RAMP_BEFORE_POSTING_STATUS_AFTER_STANDBY = 0
+Byte:0594:           Bit:2, ENABLE_DELAY_BEFORE_POSTING_STATUS_AFTER_STANDBY = 1
+Byte:0597:       LTTCPowerOnHours = 0A
+Byte:0598:       DebugAddress0 = 00 00 00 00
+Byte:059C:       DebugValue0 = 00 00 00 00
+Byte:05A0:       DebugAddress1 = 00 00 00 00
+Byte:05A4:       DebugValue1 = 00 00 00 00
+Byte:05A8:       MaxDSTUnrecoverableFailures = 00 00
+Byte:05AA:       APMTimer3mSec = 00 20
+Byte:05AC:       EIB_DebugFlags = 00
+Byte:05AC:           Bit:0, EIB_WRT_MSG_ENABLE = 0
+Byte:05AC:           Bit:1, EIB_SWD_MSG_ENABLE = 0
+Byte:05AC:           Bit:2, EIB_SIM_MSG_ENABLE = 0
+Byte:05AC:           Bit:3, EIB_DEBUG_MSG_ENABLE = 0
+Byte:05AD:       Expansion =
+                 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                 00 00 00 00 00 00 00 00 00 00 00
+                 ''
+
+F3 T>/C
+
+F3 C>Q
+
+Online CR: Rev 0011.0000, Flash,   Abort
+Online ESC: Rev 0011.0000, Flash,   AbortLoopOrBatchFile
+Online ' ': Rev 0001.0000, Flash,   PauseOutput
+Online '.': Rev 0011.0000, Flash,   DisplayActiveStatus
+Online '?': Rev 0011.0000, Flash,   DisplayDiagBufferInfo
+Online '`': Rev 0012.0001, Flash,   DisplayRwStats
+Online '$': Rev 0012.0001, Flash,   DisplayRwStatsByZone
+Online '{': Rev 0011.0000, Flash,   ToggleEibTracing
+Online ^D: Rev 0011.0000, Flash,   ToggleRwTracing
+Online ^N: Rev 0011.0000, Flash,   ToggleRwTracing
+Online ^W: Rev 0011.0000, Flash,   RwStatsEnableAndInit
+Online ^O: Rev 0001.0000, Flash,   AdvanceServoTracingState
+Online '!': Rev 0011.0000, Flash,   DisplayRdChannelRegs
+Online '<': Rev 0011.0000, Flash,   DecRwScopeSync
+Online '>': Rev 0011.0000, Flash,   IncRwScopeSync
+Online '~': Rev 0011.0000, Flash,   DisplayInterfaceCmdState
+Online ^A: Rev 0012.0000, Flash,   DisplayFirmwareRev
+Online ^B: Rev 0012.0000, Flash,   GetThermistorTemperature
+Online ^C: Rev 0011.0000, Flash,   FirmwareReset
+Online ^E: Rev 0011.0000, Flash,   DisplayInterfaceConfig
+Online ^F: Rev 0011.0000, Flash,   DisplayInterfaceRdCacheInfo
+Online ^I: Rev 0011.0000, Flash,   DisplayControllerRegs
+Online ^K: Rev 0011.0000, Flash,   DisplayDstStatus
+Online ^L: Rev 0013.0000, Flash,   DisplaySignOnMsg
+Online ^P: Rev 0011.0000, Flash,   ToggleDiagIdleMode
+Online ^Q: Rev 0011.0000, Flash,   ResumeInterfaceTask
+Online ^R: Rev 0011.0000, Flash,   EnableAsciiOnlineSerialPortMode
+Online ^S: Rev 0011.0000, Flash,   PauseInterfaceTask
+Online ^T: Rev 0011.0000, Flash,   EnableEslipSerialPortMode
+Online ^U: Rev 0011.0000, Overlay, DisplayCongen
+Online ^V: Rev 0011.0000, Flash,   ToggleInterfaceCmdEcho
+Online ^X: Rev 0011.0000, Flash,   DisplayInterfaceAndRwCmdHistory
+Online ^Y: Rev 0011.0000, Flash,   DisplayDstStatus
+Online ^Z: Rev 0011.0000, Flash,   EnableAsciiDiagSerialPortMode
+Online ^\: Rev 0011.0000, Flash,   ToggleDebugDisplayEnable
+All Levels CR: Rev 0011.0000, Flash,   Abort
+All Levels '/': Rev 0001.0000, Flash,   ChangeDiagLevel, /[Level]
+All Levels '+': Rev 0011.0001, Flash,   PeekMemoryByte, +[AddrHi],[AddrLo],[Opts]
+All Levels '-': Rev 0011.0001, Flash,   PeekMemoryWord, -[AddrHi],[AddrLo],[Opts]
+All Levels '=': Rev 0011.0001, Flash,   PokeMemoryByte, =[AddrHi],[AddrLo],[Data],[Opts]
+All Levels '@': Rev 0001.0000, Overlay, BatchFileLabel, @[LabelNum]
+All Levels '|': Rev 0001.0000, Overlay, BatchFileTerminator, |
+All Levels '*': Rev 0011.0000, Overlay, SpecialBatchFileFunction, *[FuncId],[FuncParm0],[FuncParm1]
+All Levels 'A': Rev 0011.0000, Overlay, SetTestSpace, A[OptsOrParmSelect],[ParmValue],[AddrType],[HdForCylLimit]
+All Levels 'L': Rev 0001.0002, Overlay, EnableLooping, L[Opts],[CountOrStopOnErrCode]
+Level 1 'S': Rev 0011.0001, Flash,   EditProcessorMemoryByte, S[AddrHi],[AddrLo],[MemValue],[NumBytes],[Opts]
+Level 1 'U': Rev 0011.0001, Flash,   EditBufferMemoryByte, U[AddrHi],[AddrLo],[MemValue],[NumBytes]
+Level 1 'e': Rev 0011.0000, Flash,   SpinDownAndResetDrive, e[MsecDelay],[Opts]
+Level 1 'm': Rev 0011.0001, Flash,   EditProcessorMemoryWord, m[AddrHi],[AddrLo],[MemValue],[NumBytes],[Opts]
+Level 1 'B': Rev 0011.0000, Overlay, BufferDisplay, B[DisplayBlk],[RefBlk],[NumBlks],[Opts],[SymBits]
+Level 1 'D': Rev 0011.0001, Overlay, DisplayMemoryBlock, D[AddrHi],[AddrLo],[CompVal],[NumBytes],[Opts],[SizeInBytes]
+Level 1 'G': Rev 0011.0000, Overlay, GenericRwRequest, G[Parm0],[Parm1],[Parm2],...[Parm9]
+Level 1 'I': Rev 0001.0000, Overlay, BufferDllTune, I[action][DLL]
+Level 1 'N': Rev 0014.0000, Overlay, SmartControl, N[SubCmd],[SubCmdParm0],[SubCmdParm1]
+Level 1 'c': Rev 0011.0000, Overlay, BufferCompare, c[SrcBlk],[RefBlk],[NumBlks],[ContOnErr]
+Level 2 'J': Rev 0001.0000, Flash,   ParticleSweep, J[ Start Cyl ],[ End Cyl ],[ Duration mSec ],[ Dwell mSec ],[ JIT mode ]
+Level 2 'U': Rev 0011.0000, Flash,   SpinUpDrive, U[HoldState],[Hd],[Cyl]
+Level 2 'Z': Rev 0011.0000, Flash,   SpinDownDrive, Z
+Level 2 'B': Rev 0011.0000, Overlay, BufferDisplay, B[DisplayBlk],[RefBlk],[NumBlks],[Opts],[SymBits]
+Level 2 'C': Rev 0011.0000, Overlay, BufferCopy, C[SrcBlk],[DestBlk],[NumBlks]
+Level 2 'E': Rev 0012.0000, Overlay, DisplayEditLog, E[LogNum],[ErrCodeOrSpecialFuncKey],[SpecialFunc]
+Level 2 'F': Rev 0011.0000, Overlay, ModTrkDfctLst, F[PSctr/LBA],[Action]
+Level 2 'H': Rev 0011.0000, Overlay, SelectHd, H[Hd],[SkType],[Options]
+Level 2 'I': Rev 0011.0003, Overlay, DisplayModifyAdaptiveParm, I,[GroupId]
+Level 2 'K': Rev 0011.0000, Overlay, SetTrackingOffset, K[OffsetValue],[PersOrTempOpt],[UnitsOpt],[ChanReload]
+Level 2 'M': Rev 0011.0000, Overlay, SetDiagIdleMode, M[ModeSelect],[ModeMask],[ResetToPowerOn]
+Level 2 'N': Rev 0001.0000, Overlay, SetDirectWrite, N[EnableDirWrtModeOpt]
+Level 2 'O': Rev 0011.0000, Overlay, SeekFromCylToCyl, O[StartPhyCyl0],[StartPhyCyl1],[NumSkPairs],[NumSeconds],[Hd]
+Level 2 'P': Rev 0011.0000, Overlay, BufferSetPattern, P[PatternSelOrPatternLow],[PatternHi],[PatternBits],[Opts],[BlkNum],[NumBlks]
+Level 2 'Q': Rev 0011.0000, Overlay, WrRdRdChs, Q[Sec],[NumSecs],,[PhyOpt],[Opts]
+Level 2 'R': Rev 0011.0000, Overlay, RdChs, R[Sec],[NumSecs],,[PhyOpt],[Opts]
+Level 2 'S': Rev 0011.0000, Overlay, SkToLogCyl, S[Cyl],[Hd],[Offset],[OffsetUnitsOpt],[SkType],[Options]
+Level 2 'T': Rev 0013.0000, Overlay, MeasureThroughput, T[Opts],[CylSkew],[HeadSkew],[MiniZoneSkew],[SkewStep],[LengthInTracks],[OffsetInTracks],[NumberOfRetries]
+Level 2 'V': Rev 0011.0000, Overlay, RdVerifyChs, V[Sec],[NumSecs],[CompareBlk],[Opts]
+Level 2 'W': Rev 0011.0000, Overlay, WrChs, W[Sec],[NumSecs],,[PhyOpt],[Opts]
+Level 2 'X': Rev 0011.0000, Overlay, DisplayTrkSectorInfo, X[LogCyl],[Hd],[SysAreaOpt],[Opts],[RowsPerPage]
+Level 2 'Y': Rev 0011.0000, Overlay, SetDerpRetries, Y[Mode],[MaxRdRetries],[MaxWrtRetries],[OtcTLevel],[Options]
+Level 2 'a': Rev 0001.0000, Overlay, MeasureOptimumSkew, a
+Level 2 'c': Rev 0011.0000, Overlay, BufferCompare, c[SrcBlk],[RefBlk],[NumBlks],[ContOnErr]
+Level 2 'h': Rev 0011.0000, Overlay, XlatePhySec, h[Sec],[NumSecs]
+Level 2 'i': Rev 0011.0000, Overlay, DisplayDefectsOnCurrentTrk, i
+Level 2 'j': Rev 0011.0000, Overlay, RdWedge, j[WedgeAddr],[NumWedges],[NumSkipedWedges],[TranSize],[Opts],[RegAddr0],...,[RegAddr13]
+Level 2 'k': Rev 0001.0000, Overlay, SetUserSkew, k[CylSkew],[HeadSkew],[MiniZoneSkew]
+Level 2 'l': Rev 0011.0000, Overlay, XlateLogSec, l[Sec],[NumSecs]
+Level 2 'o': Rev 0001.0000, Overlay, CorruptLba, o[Lba],[NumBlocks],[BurstSpan],[BurstOffset],[NumberOfRandomCorrupt],[Flags]
+Level 2 'r': Rev 0011.0000, Overlay, RdLongOrSystemChs, r[LongSec],[LongSecsOrSysSec],[SysSecs],[LongPhySecOpt],[LongOpts],[SysOpts]
+Level 2 's': Rev 0011.0000, Overlay, SkToPhyCyl, s[Cyl],[Hd],[ValidKey],[Offset],[OffsetUnitsOpt],[SkType],[Options]
+Level 2 't': Rev 0011.0000, Overlay, XlateWedge, t[Wdg],[NumWdgs]
+Level 2 'u': Rev 0011.0000, Overlay, EnableDisableChannelPreampRegDisplay, u[EnableDisableOpt]
+Level 2 'v': Rev 0011.0000, Overlay, ConvertTrackPercentageToOffsetCount, v[Percentage]
+Level 2 'w': Rev 0011.0000, Overlay, WrLongOrSystemChs, w[LongSec],[LongSecsOrSysSec],[SysSecs],[LongPhySecOpt],,[SysOpts]
+Level 2 'x': Rev 0013.0000, Overlay, DisplayZoneInfo, x[Partition],[Hd],[Zone],[Options]
+Level 2 'y': Rev 0011.0000, Overlay, SetDerpRetryState, y[Type],[PathState],[RetryStateCnt],[LoopCnt1],[LoopCnt2]
+Level 2 'z': Rev 0011.0000, Overlay, WrWedge, z[WedgeAddr],[NumWedges],[NumSkipedWedges],[TranSize],[Opt],[RegAddr0],...,[RegAddr13]
+Level 2 '7': Rev 0011.0000, Overlay, WrVerifyChs, 7[Sec],[NumSecs],[WrBufBlk],[Opts]
+Level 3 'U': Rev 0011.0000, Flash,   SpinUpDrive, U[HoldState],[Hd],[Cyl]
+Level 3 'V': Rev 0011.0000, Flash,   RwPowerAsicReg, V[RegAddr],[RegValue],[WrOpt]
+Level 3 'Z': Rev 0011.0000, Flash,   SpinDownDrive, Z
+Level 3 'D': Rev 0011.0000, Overlay, MeasureSkAccessTime, D[SkLength],[SkType],[NumSks]
+Level 3 'E': Rev 0012.0000, Overlay, DisplayEditLog, E[LogNum],[ErrCodeOrSpecialFuncKey],[SpecialFunc]
+Level 3 'H': Rev 0011.0000, Overlay, SelectHd, H[Hd],[SkType],[Options]
+Level 3 'O': Rev 0011.0000, Overlay, SeekFromCylToCyl, O[StartPhyCyl0],[StartPhyCyl1],[NumSkPairs],[NumSeconds],[Hd]
+Level 3 'Q': Rev 0011.0000, Overlay, WrRdWrRdChs, Q[Sec],[NumSecs],[Opts]
+Level 3 'R': Rev 0011.0000, Overlay, ReadCurrentServoDestination, R
+Level 3 'S': Rev 0011.0000, Overlay, SkToLogCyl, S[Cyl],[Hd],[Offset],[OffsetUnitsOpt],[SkType],[Options]
+Level 3 'c': Rev 0001.0000, Overlay, Measure Latch Force, c[NumberOfSamples]
+Level 3 'f': Rev 0012.0000, Overlay, RealTimeServoTrace, f[SubCmd],[SubCmdParm0],[SubCmdParm1]
+Level 3 'p': Rev 0011.0000, Overlay, XlatePhySec, p[Sec],[NumSecs]
+Level 3 'q': Rev 0011.0000, Overlay, XlateLogSec, q[Sec],[NumSecs]
+Level 3 's': Rev 0011.0000, Overlay, SkToPhyCyl, s[Cyl],[Hd],[ValidKey],[Offset],[OffsetUnitsOpt],[SkType],[Options]
+Level 4 'B': Rev 0011.0000, Overlay, EnableDisableRvff, B[NewRvffControlMode]
+Level 4 'D': Rev 0011.0000, Overlay, MeasureSkAccessTime, D[SkLength],[SkType],[NumSks]
+Level 4 'E': Rev 0012.0000, Overlay, DisplayEditLog, E[LogNum],[ErrCodeOrSpecialFuncKey],[SpecialFunc]
+Level 4 'H': Rev 0011.0000, Overlay, SelectHd, H[Hd],[SkType],[Options]
+Level 4 'K': Rev 0011.0000, Overlay, SetTrackingOffset, K[OffsetValue],[PersOrTempOpt],[UnitsOpt],[ChanReload]
+Level 4 'O': Rev 0011.0000, Overlay, DisplayMicroJogForLogChs, O[LogCyl],[Hd],[Opts],[SysAreaOpt]
+Level 4 'S': Rev 0011.0000, Overlay, SkToLogCyl, S[Cyl],[Hd],[Offset],[OffsetUnitsOpt],[SkType],[Options]
+Level 4 'U': Rev 0011.0000, Overlay, ServoBatchTest, U[SubCmd],[SubCmdParm0],[SubCmdParm1],[SubCmdParm2]
+Level 4 'c': Rev 0001.0000, Overlay, FindMinOrMaxCylinders c[Head],[Mode],[RangeMultiplier],[RetryCountLimit],[FilterTimeConstant]
+Level 4 'e': Rev 0011.0000, Overlay, EnableDisablePesOutput, e[PesLeftShiftCnt],[DisablePesOut]
+Level 4 'g': Rev 0001.0000, Overlay, DisplayServoSectorErrorLog, g
+Level 4 'k': Rev 0001.0000, Overlay, GetVgaData, k[OpType],[StartHt],[EndHt],[HtInc]
+Level 4 'l': Rev 0011.0000, Overlay, ScanTrackForServoDefectsAndZap, l[RdPositionOpt]
+Level 4 'q': Rev 0001.0000, Overlay, DisplayServoEventLog, q
+Level 4 's': Rev 0001.0000, Overlay, DisplayServoSectorErrorCount, s
+Level 4 't': Rev 0011.0000, Overlay, DisplayModifyZapTable, t[EntryNum],[EntryValue]
+Level 4 'u': Rev 0011.0000, Overlay, SetSkSpeed, u[Opts],[SkSpeed]
+Level 4 'v': Rev 0011.0000, Overlay, ButterflySeekTest, v[StartPhyCyl0],[StartPhyCyl1],[NumSkPairs],[NumSeconds],[Hd]
+Level 5 'S': Rev 0011.0000, Flash,   EnterServoMatlabShell, S
+Level 5 'B': Rev 0011.0000, Overlay, Servo Bode Plot, B[BodeType],[InjAmp],[Fmin],[Fmax],[NumFreq],[NumSamples],[EnableTracing]
+Level 5 'C': Rev 0011.0000, Overlay, GenericServoCmd, C[CmdNum],[Parm1],...[Parm7]
+Level 5 'D': Rev 0011.0000, Overlay, ReadUnlockDdrBuffer, B[OperateCode]
+Level 5 'E': Rev 0001.0000, Overlay, MeasureDiscEccentricity
+Level 5 'G': Rev 0011.0000, Overlay, SelectServoController, G[Head],[Controller],[InputShift]
+Level 5 'R': Rev 0011.0000, Overlay, RdServoRamAtAddr, R[Addr],[NumBytes]
+Level 5 'U': Rev 0011.0000, Overlay, EnableDisableServoUpdates, U[VcmDacUpdateOpt],[AToDUdateOpt]
+Level 5 'W': Rev 0011.0000, Overlay, WrServoRamAtAddr, W[Addr],[NumBytes],[Data]
+Level 5 'Z': Rev 0011.0000, Overlay, RdZapFromDiscToTable, Z
+Level 5 'd': Rev 0011.0000, Overlay, DisableEnableServoZap, d[ZapControlMode]
+Level 5 'e': Rev 0001.0000, Overlay, EnableDisableShockSensor, e[Operation]
+Level 5 'i': Rev 0011.0000, Overlay, RdServoSymbolTableAtIndex, i[Index]
+Level 5 'r': Rev 0011.0000, Overlay, RdServoRamAtIndex, r[Index],[NumBytes],[ByteOffset]
+Level 5 'w': Rev 0011.0000, Overlay, WrServoRamAtIndex, w[Index],[NumBytes],[Data],[ByteOffset]
+Level 6 'B': Rev 0011.0000, Overlay, RunBatchFile, B[BatchFileNum],[DisplayOpt]
+Level 6 'D': Rev 0011.0000, Overlay, DisplayBatchFile, D[BatchFileNum]
+Level 6 'E': Rev 0011.0000, Overlay, EnterBatchFile, E[BatchFileNum]
+Level 7 'Z': Rev 0011.0000, Flash,   SpinDownDrive, Z
+Level 7 's': Rev 0011.0000, Flash,   WrPeripheralReg, s[OpType],[RegAddr],[RegValue],[RegMask],[RegPagAddr]
+Level 7 't': Rev 0011.0000, Flash,   RdPeripheralReg, t[OpType],[RegAddr],[NumRegs],[RegMask],[RegPagAddr]
+Level 7 'B': Rev 0011.0000, Overlay, BufferDisplay, B[DisplayBlk],[RefBlk],[NumBlks],[Opts],[SymBits]
+Level 7 'C': Rev 0011.0000, Overlay, BufferCopy, C[SrcBlk],[DestBlk],[NumBlks]
+Level 7 'D': Rev 0012.0000, Overlay, DisplayTemperature, D,[DevSelect]
+Level 7 'E': Rev 0012.0000, Overlay, DisplayEditLog, E[LogNum],[ErrCodeOrSpecialFuncKey],[SpecialFunc]
+Level 7 'H': Rev 0011.0000, Overlay, SelectHd, H[Hd],[SkType],[Options]
+Level 7 'I': Rev 0011.0003, Overlay, DisplayModifyAdaptiveParm, I,[GroupId]
+Level 7 'K': Rev 0011.0000, Overlay, SetTrackFormat, K[UserAreaTrkFormatType],[SysAreaTrkFormatType]
+Level 7 'P': Rev 0011.0000, Overlay, BufferSetPattern, P[PatternSelOrPatternLow],[PatternHi],[PatternBits],[Opts],[BlkNum],[NumBlks]
+Level 7 'Q': Rev 0011.0000, Overlay, WrRdRdChs, Q[Sec],[NumSecs],,[PhyOpt],[Opts]
+Level 7 'R': Rev 0011.0000, Overlay, RdChs, R[Sec],[NumSecs],,[PhyOpt],[Opts]
+Level 7 'S': Rev 0011.0000, Overlay, SkToLogCyl, S[Cyl],[Hd],[Offset],[OffsetUnitsOpt],[SkType],[Options]
+Level 7 'U': Rev 0011.0001, Overlay, ChannelTemperatureAdj, U[TweakTemperature],[Partition],[Hd],[Zone],[Opts]
+Level 7 'W': Rev 0011.0000, Overlay, WrChs, W[Sec],[NumSecs],,[PhyOpt],[Opts]
+Level 7 'X': Rev 0011.0000, Overlay, DisplayPreampHdResistance, X
+Level 7 'Y': Rev 0011.0000, Overlay, SetDerpRetries, Y[Mode],[MaxRdRetries],[MaxWrtRetries],[OtcTLevel],[Options]
+Level 7 'b': Rev 0011.0000, Overlay, EraseTrk, b[AdjacentTrkCnt],[EraseCntPerTrk],[AcEraseOpt]
+Level 7 'c': Rev 0011.0000, Overlay, OffTrackCapability, c[Sec],[NumSecs],[SecIncrement],[Offset]
+Level 7 'h': Rev 0011.0001, Overlay, MarkMediaFlaw, h[PhyCyl],[Hd],[PhySec],[UndisturbedRadius],[EraseBandTrks],[PtrLen],[WgSpec],[Od/Id]
+Level 7 'i': Rev 0011.0000, Overlay, GenericRwRequest, i[Parm0],[Parm1],[Parm2],...[Parm9]
+Level 7 'm': Rev 8002.0000, Overlay, DOS, m[clr,min scn]
+Level 7 'r': Rev 0011.0000, Overlay, RdNonVolatileAdaptiveParms, r[Opts]
+Level 7 'u': Rev 0011.0000, Overlay, EnableDisableWrFault, u[Op]
+Level 7 'w': Rev 0011.0000, Overlay, SaveAdaptivesToFlash, w[Seg],,22
+Level 7 'x': Rev 0013.0000, Overlay, DisplayZoneInfo, x[Partition],[Hd],[Zone],[Options]
+Level 7 'y': Rev 0011.0000, Overlay, SetDerpRetryState, y[Type],[PathState],[RetryStateCnt],[LoopCnt1],[LoopCnt2]
+Level 8 'U': Rev 0011.0000, Flash,   SpinUpDrive, U[HoldState],[Hd],[Cyl]
+Level 8 'Z': Rev 0011.0000, Flash,   SpinDownDrive, Z
+Level 8 'C': Rev 0011.0000, Overlay, ServoDiagSubCmds, C[SubCmd],[Parm0],[Parm1],[Parm2]
+Level 8 'R': Rev 0011.0000, Overlay, ReadCurrentServoDestination, R
+Level 8 'S': Rev 0011.0000, Overlay, SkToLogCyl, S[Cyl],[Hd],[Offset],[OffsetUnitsOpt],[SkType],[Options]
+Level 8 'd': Rev 0001.0000, Overlay, HeadSmashTest, d[HeadDirection],[AccelerationDuration],[DecelerationDuration],[AccelerationCurrent],[DecelerationCurrent]
+Level A 'C': Rev 0011.0000, Overlay, XlatePba, C[PbaHi],[PbaLow],[NumPbas]
+Level A 'D': Rev 0011.0000, Overlay, XlateSfi, D[PhyCyl],[Hd],[Sfi],[NumSfis]
+Level A 'E': Rev 0012.0000, Overlay, DisplayEditLog, E[LogNum],[ErrCodeOrSpecialFuncKey],[SpecialFunc]
+Level A 'F': Rev 0011.0000, Overlay, XlateLba, F[LbaHi],[LbaLo],[SysAreaOpt],[NumLbas]
+Level A 'M': Rev 0011.0000, Overlay, SetControllerTestPort, M[Port],[Value]
+Level A 'P': Rev 0012.0000, Overlay, MergeAltListIntoSlipList, P
+Level A 'Q': Rev 0011.0000, Overlay, WrRdRdLba, Q[Lba],[NumLbas],[Opts]
+Level A 'R': Rev 0011.0000, Overlay, RdLba, R[Lba],[NumLbas],,[Opts]
+Level A 'S': Rev 0011.0000, Overlay, SkToLba, S[LbaHi],[LbaLo],[Offset],[OffsetUnitsOpt],[SkType],[Options]
+Level A 'W': Rev 0011.0000, Overlay, WrLba, W[Lba],[NumLbas],,[Opts]
+Level A 'Y': Rev 0011.0000, Overlay, SetDerpRetries, Y[Mode],[MaxRdRetries],[MaxWrtRetries],[OtcTLevel],[Options]
+Level A 'c': Rev 0011.0000, Overlay, XlateLllChs, c[Cyl],[Hd],[Sec],[SysAreaOpt],[NumSecs]
+Level A 'd': Rev 0011.0000, Overlay, XlatePlpChs, d[Cyl],[Hd],[Sec],[NumSecs]
+Level A 'e': Rev 0011.0000, Overlay, XlateNominalCyl, e[Cyl],[Hd],[Sec],[SysAreaOpt]
+Level A 'f': Rev 0011.0000, Overlay, XlatePlpChw, f[Cyl],[Hd],[Wdg],[NumWdgs]
+Level A 'l': Rev 0011.0000, Overlay, DisplayTrkInfo, l[LogCyl],[Hd],[SysAreaOpt],[Opts],[RowsPerPage]
+Level A 'y': Rev 0011.0000, Overlay, SetDerpRetryState, y[Type],[PathState],[RetryStateCnt],[LoopCnt1],[LoopCnt2]
+Level C 'Q': Rev 0001.0000, Overlay, DisplayAsciiCmdInfo, Q[CmdLevel],[Cmd]
+Level C 'T': Rev 0011.0000, Overlay, GoopPlot, T[Hd],[StartTrk],[EndTrk],[ECCLvl],[NoFrcSync],[SkipCnt]
+Level E 'B': Rev 0011.0000, Overlay, WrWedge, B[WedgeAddr],[NumWedges],[NumSkipedWedges],[TranSize],[Opt],[RegAddr0],...,[RegAddr13]
+Level E 'C': Rev 0011.0000, Overlay, RdWedge, C[WedgeAddr],[NumWedges],[NumSkipedWedges],[TranSize],[Opts],[RegAddr0],...,[RegAddr13]
+Level E 'G': Rev 0001.0000, Overlay, HeadDegradation, G[OperationControlOptions],[MeasurementControlOptions]
+Level E 'd': Rev 0001.0000, Overlay, SqmsDibitOpti, d[OptiAlgorithm],[LATE01 NOMR/F],[SweepStartVal],[SweepEndVal],[IterationCnt],[Verbose]
+Level E 'm': Rev 0011.0000, Overlay, FastMseserMeasurement, m[]
+Level E 'n'No help available
+Level E 'o': Rev 0011.0000, Overlay, FineRwOffset, o[NumAvgs],[TrkStepSize],[NumGuardTrks]
+Level E 'w': Rev 0011.0001, Overlay, SlowWrChs, w[Sec],[NumSecs],[ConSec],[Skip],[UnitOfSkip]
+Level F 'U': Rev 0011.0000, Flash,   SpinUpDrive, U[HoldState],[Hd],[Cyl]
+Level F 'Z': Rev 0011.0000, Flash,   SpinDownDrive, Z
+Level F 'b': Rev 0011.0000, Flash,   SetBaudRate, b[BaudRate],[MsecDelay]
+Level F 't': Rev 0011.0000, Flash,   WrPeripheralReg, t[OpType],[RegAddr],[RegValue],[RegMask],[RegPagAddr]
+Level F 'B': Rev 0011.0000, Overlay, BufferDisplay, B[DisplayBlk],[RefBlk],[NumBlks],[Opts],[SymBits]
+Level F 'C': Rev 0011.0000, Overlay, BufferCopy, C[SrcBlk],[DestBlk],[NumBlks]
+Level F 'D': Rev 0011.0001, Overlay, DisplayMemoryBlock, D[AddrHi],[AddrLo],[CompVal],[NumBytes],[Opts],[SizeInBytes]
+Level F 'E': Rev 0001.0000, Overlay, SymbolErrorMap, E[trk],[hd],[srt sctr],[sctr cnt],[action],[mx err]
+Level F 'P': Rev 0011.0000, Overlay, BufferSetPattern, P[PatternSelOrPatternLow],[PatternHi],[PatternBits],[Opts],[BlkNum],[NumBlks]
+Level F 'V': Rev 0011.0000, Overlay, BufferCompare, V[SrcBlk],[RefBlk],[NumBlks],[ContOnErr]
+Level F 'Y': Rev 0011.0000, Overlay, SetDerpRetries, Y[Mode],[MaxRdRetries],[MaxWrtRetries],[OtcTLevel],[Options]
+Level F 'r': Rev 0011.0000, Overlay, RdSystemChs, r[LogSec],[NumSecs],[Opts]
+Level F 's': Rev 0011.0000, Overlay, SkToPhyCyl, s[Cyl],[Hd],[ValidKey],[Offset],[OffsetUnitsOpt],[SkType],[Options]
+Level F 'y': Rev 0011.0000, Overlay, SetDerpRetryState, y[Type],[PathState],[RetryStateCnt],[LoopCnt1],[LoopCnt2]
+Level F 'z': Rev 0011.0000, Overlay, SataDebug, z[SubCmd],[Parm1],[Parm2],[Parm3]
+Level G 'B': Rev 0011.0000, Overlay, FillCorrectionBuffer, B[StartAddr],[EndAddr],[Pattern],[Opts]
+Level G 'C': Rev 0011.0000, Overlay, CopyCorrectionBuffer, C[SrcAddr],[DestAddr],[NumSyms]
+Level G 'D': Rev 0011.0000, Overlay, DisplayCorrectionBuffer, D[StartAddr],[EndAddr],[CompareData]
+Level G 'F': Rev 0011.0000, Overlay, FillSuperParityRam, F[StartAddr],[EndAddr],[Pattern]
+Level G 'G': Rev 0011.0000, Overlay, DisplaySuperParityRam, G[StartAddr],[EndAddr]
+Level H 'B': Rev 0011.0000, Overlay, BufferDisplay, B[DisplayBlk],[RefBlk],[NumBlks],[Opts],[SymBits]
+Level H 'D': Rev 0001.0000, Overlay, FieldAdjustFlyHeight, c[Flags],[NumCollectionsToAvg],[PctOfBpiLowFreq],[PctOfBpiHighFreq],
+
+[PctOfTgtClr],[CTFFR],[ATT2R],[VgaLowFreq],[VgaHighFreq],[StartHtr],[EndHtr],[HtrIncr],[StartPreHtr],[ContactDac],
+
+[NumPreHeatSects],[NumPreChanCollectHeatSects],[NumChanCollectHeatSects],[NumPostChanCollectHeatSects],[HscIntgLength],
+
+[ChannelPreheatRevs]
+Level H 'F': Rev 0002.0001, Overlay, MdContactDetect, F[Flags],[NumRevsToAvg],[PctOfBpi],[HscIntgLength],
+
+[PatternSelect],,[CTFFR],[ATT2R],[VGA],[StartHtr],[EndHtr],[HtrIncr],[StartPreHtr],
+
+[NumPreHeatSects],[NumPreChanCollectHeatSects],[NumChanCollectHeatSects],[NumPostChanCollectHeatSects],
+
+[CoarseSearchStartClr],[FineSearchStartClr],[ContactSearchLimitClr]
+Level H 'P': Rev 0011.0000, Overlay, BufferSetPattern, P[PatternSelOrPatternLow],[PatternHi],[PatternBits],[Opts],[BlkNum],[NumBlks]
+Level H 'S': Rev 0011.0000, Overlay, SkToLogCyl, S[Cyl],[Hd],[Offset],[OffsetUnitsOpt],[SkType],[Options]
+Level H 'b': Rev 0013.0000, Overlay, ContactDetect, b[Flags],[Revs],[BaselineRevs],[StartWedge],[A],[B],[C],[D],[E],[StartHt],[HtInc],
+
+[FixedPESThresh],[FilterDelta],[RangeStart],[RangePts],[AdjThreshSigmaLimit],[VarContactThreshBackup]
+Level H 'c': Rev 0003.0000, Overlay, CalClearanceCoefsAdjustment, c[Flags],[NumRevsToAvg],[PctOfBpi],[PctOfTgtClr],
+
+[LowerHIWPLimit],[UpperHIWPLimit],[CTFFR],[ATT2R],[VGA],[StartHtr],[EndHtr],[HtrIncr],[StartPreHtr],
+
+[NumPreHeatSects],[NumPreChanCollectHeatSects],[NumChanCollectHeatSects],[NumPostChanCollectHeatSects],
+
+[HscIntgLength]
+Level L 'C': Rev 0011.0000, Overlay, CopyLogFile, C[SrcLog],[DestLog],[AppendOpt]
+Level L 'D': Rev 0012.0000, Overlay, DisplayLogFile, D[Log],[ErrCode]
+Level L 'E': Rev 0011.0001, Overlay, EnableDisableLogging, E[ErrLoggingOpt],[AsciiLoggingOpt],[RwStatsLoggingOpt]
+Level L 'I': Rev 0011.0000, Overlay, DisplayLogFileInfo, I[Log]
+Level L 'c': Rev 0011.0000, Overlay, CreateLogFile, c[Log],[LogType],[BufferOrDiskOpt],[NumBytes]
+Level L 'd': Rev 0011.0000, Overlay, DeleteLogFile, d[Log]
+Level L 'i': Rev 0011.0000, Overlay, InitLogFile, i[Log]
+Level T 'B': Rev 0011.0000, Flash,   SetBaudRate, B[BaudRate],[MsecDelay]
+Level T 'm': Rev 0012.0803, Flash,   FormatPartition, m[Partition],[FormatOpts],[DefectListOpts],[MaxWrRetryCnt],[MaxRdRetryCnt],
+
+[MaxEccTLevel],[MaxCertifyTrkRewrites],[ValidKey],[DataPattern]
+Level T 'E': Rev 0012.0000, Overlay, DisplayEditLog, E[LogNum],[ErrCodeOrSpecialFuncKey],[SpecialFunc]
+Level T 'F': Rev 0011.0000, Overlay, DisplayModifyCongenCmdHelpMsg, F[ValueRef],[Data],[ResetEnable]
+Level T 'J': Rev 0011.0001, Overlay, DisplayModifyCap, J[ParmValue],[ParmId],[ParmArrayBytes],[ParmByteArrayOffset]
+Level T 'O': Rev 0001.0000, Overlay, SelectDataOutputMode, O[Mode],[VerboseOpts]
+Level T 'P': Rev 0011.0000, Overlay, DownloadGenericFile, P[FileBytes]
+Level T 'R': Rev 0011.0000, Overlay, RdNonVolatileAdaptiveParms, R[Opts]
+Level T 'T': Rev 0011.0000, Overlay, OddEvenEncroachmentTest, T[strt tk],[end tk],[hd],[rtry thrshld][ECC thrshld
+Level T 'V': Rev 0014.0000, Overlay, DisplayDefectLists, V[ListMask],[Hd],[StartCyl],[NumCyls],[Summary],[FlagsMask]
+Level T 'W': Rev 0011.0000, Overlay, SaveAdaptivesToFlash, W[Seg],,22
+Level T 'i': Rev 0011.0001, Overlay, InitDefectList, i[DefectListSelect],[SaveListOpt],[ValidKey]
+Level T 'r': Rev 0001.0000, Overlay, ReadFile, r[FileId],[VolumeNum],[CopyNum],[ByteOffset],[Length],[OutputFmt]
+Level T 'w': Rev 0001.0000, Overlay, WriteFile, w[FileId],[VolumeNum],[CopyNum],[ByteOffset]
+Level T '[': Rev 0011.0000, Overlay, AsciiLogControl, [[LogFunction],[Log]
+F3 C>/2
+
+F3 2>i
+Track Info:
+                                                                   
+Partition PhyCyl   LogCyl   NomCyl   RadiusMils   LogHd Zn FirstLba FirstPba Log
+Secs PhySecs WdgSkw SecPerFrm WdgPerFrm 
+                                      
+User      00000000 00000000 00000000 +1.801312E+3 00    00 00000000 00000000 0A2
+0    0A20    0000   0009      0001      
+
+ 2,54mm x 3,5" = 88,9cm
+ raio LBA 0 = 1,801312 * 10^3 mils = 1801,312mils => 45,7533248mm 
+ 
+ 
+g
+
+Cylinder  Hd  Sect  Error Type
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+00000000   0  0000  12  Servo Code Specific
+F3 4>/L
+
+F3 L>I0
+
+DiagError 00008000 
+F3 L>
+
+
+User Partition
+
+ LBAs 00000000-1D1C596F (decimal: 488.397.167 * 512bytes/setor = 232GB)
+ PBAs 00000000-1D407A7E
+ HdSkew 006E, CylSkew 002D
+ ZonesPerHd 11
+
+ Head 0, PhyCyls 000000-03B6C7, LogCyls 000000-03B01B
+
+     Physical      Logical       Sec   Sym   Sym      Data
+  Zn Cylinders     Cylinders     Track Wedge Track    Rate
+  00 000000-003C5C 000000-003C5C 0A20  11BA  001423E0 1663.125
+  01 003C5D-006B41 003C5D-006B41 09D8  1158  0013B5A0 1627.500
+  02 006B42-00AB91 006B42-00AB91 09A0  10FA  00134D00 1593.750
+  03 00AB92-00E439 00AB92-00E439 0948  105A  001297E0 1535.625
+  04 00E43A-012CF5 00E43A-012CF5 0900  0FC5  0011F040 1481.250
+  05 012CF6-015E26 012CF6-015E26 08B8  0F61  001180E0 1445.625
+  06 015E27-01A412 015E27-01A412 087B  0EF9  00110BE0 1408.125
+  07 01A413-01EF2D 01A413-01EF2D 0819  0E4A  00104700 1344.375
+  08 01EF2E-022DBB 01EF2E-022DBB 07BC  0DA0  000F87C0 1282.500
+  09 022DBC-025E13 022DBC-025E13 076C  0D0F  000EE4A0 1230.000
+  0A 025E14-02975B 025E14-02975B 0720  0C83  000E4720 1179.375
+  0B 02975C-02C613 02975C-02C613 06E0  0C1C  000DD340 1141.875
+  0C 02C614-02F977 02C614-02F977 0680  0B6D  000D0D40 1078.125
+  0D 02F978-0330B7 02F978-0330B7 061B  0ABE  000C4860 1014.375
+  0E 0330B8-035FD7 0330B8-035FD7 05D0  0A3D  000BB740  967.500
+  0F 035FD8-039203 035FD8-039203 0580  09B1  000B19C0  916.875
+  10 039204-03B6C7 039204-03B6C7 0540  0931  000A88A0  870.000
+
+System Partition
+
+ LBAs 00000000-0004B967 (309.607 * 512bytes = 151MB)
+ PBAs 00000000-0004C08F
+ HdSkew 006E, CylSkew 0018
+ ZonesPerHd 02
+
+ Head 0, PhyCyls 03B6C8-03B81B, LogCyls 000000-000152
+
+     Physical      Logical       Sec   Sym   Sym      Data
+  Zn Cylinders     Cylinders     Track Wedge Track    Rate
+  00 03B6C8-03B771 000000-0000A9 0394  063D  00072AE0  592.500
+  01 03B772-03B81B 0000AA-000153 0394  063D  00072AE0  592.500
+
+
+All Addr Modes
+User LBA Mode
+  LBAs 00000000 - 1D1C596F
+System LBA Mode
+  LBAs 00000000 - 0004B967
+
+
+
+
+RW  32 Cmds
+Ts(ms)     dT(ms)   xT(ms)  Type Option Mode  St EC       Info
+      5729 99999999        9 02  005041 000000 1 00000080 XFR SYS LBA B 0002B3B6 L 00000001 BO 000000 BES 006D881.006D900.006D881
+      5749       20        6 02  002241 000000 1 00000080 XFR RD SYS LBA B 000061B7 L 00000008 BO 000000 BES 006D880.006DD7F.006D880
+      5756        7        6 02  005041 000000 1 00000080 XFR SYS LBA B 0002C0AE L 00000002 BO 000000 BES 0072B00.0072BFF.0072B00
+      5763        7        9 02  005041 000000 1 00000080 XFR SYS LBA B 000061B7 L 00000008 BO 000000 BES 006D880.006DC7F.006D880
+      5772        9       10 02  005041 000000 1 00000080 XFR SYS LBA B 0002BE6B L 00000008 BO 000000 BES 006D880.006DC7F.006D880
+      5793       21       10 02  002241 000000 1 00000080 XFR RD SYS LBA B 00006 0A4 L 00000006 BO 000000 BES 006D880.006DB7F.006D880
+      5803       10        8 02  005041 000000 1 00000080 XFR SYS LBA B 000060A4  L 0000000A BO 000000 BES 006D880.006DD7F.006D880
+      5811        8       10 02  005041 000000 1 00000080 XFR SYS LBA B 0002BD58 L 0000000A BO 000000 BES 006D880.006DD7F.006D880
+      8869     3058       10 02  005041 000000 1 00000080 XFR SYS LBA B 00009075 L 00000001 BO 000000 BES 0061B8D.0061C0C.0061B8D
+      8879       10        9 02  005041 000000 1 00000080 XFR SYS LBA B 0002ED29 L 00000001 BO 000000 BES 0061B8D.0061C0C.0061B8D
+     21569    12690       21 02  002241 000000 1 00000080 XFR RD SYS LBA B 00008 AD4 L 00000180 BO 000000 BES 004C000.0057FFF.004C000
+     21590       21       10 02  002241 000000 1 00000080 XFR RD SYS LBA B 00008 C54 L 00000100 BO 000000 BES 0058000.005FFFF.0058000
+     21601       11        0 27  002241 000000 1 00000080 SND_SRV 516F 0000 0000 0000 0000 0000 0000 0000 0001 0017 00D0                                                          0000 0000 0000 0002 0020 2AF8 4B72 6098 0B6B 0000 0000 0000 0000 0000 0000 0000
+     21601        0        0 27  002241 000000 1 00000080 SND_SRV 0501 0000 0000
+ 0000 0000 0000 0000 0000 0001 0134 00D0
+                                                          0134 0000 0000 0002 00
+20 2AF8 4B72 6098 0B6B 0000 0000 0000 0000 0000 0000 0000
+     21602        1        0 27  002241 000000 1 00000080 SND_SRV 0106 0000 0000
+ 0000 0000 0000 0000 0000 0001 0134 00D0
+                                                          0134 0000 0000 0002 00
+20 2AF8 4B72 6098 0B6B 0000 0000 0000 0000 0000 0000 0000
+     21602        0        0 27  002241 000000 1 00000080 SND_SRV 0501 008F 0000
+ 0000 0000 0000 0000 0000 0001 7103 00D0
+                                                          7103 0000 0000 0002 00
+20 2AF8 4B72 6098 0B6B 0000 0000 0000 0000 0000 0000 0000
+     22022      420       22 00  002021 000000 1 00000080 SEEK USR LBA B 00000000 L 00000000
+     22044       22        0 27  002021 000000 1 00000080 SND_SRV 0501 00B3 0000 0000 0000 0000 0000 0000 0001 15B2 00D0 15B2 0400 FFFC 5318 00
+20 2AF8 4B72 6098 0B6B 0000 0000 0000 0000 0000 0000 0000
+     22044        0        1 27  002021 000000 1 00000080 SND_SRV 0101 15B2 0000
+ 0400 0000 0000 0000 0000 0001 4506 00D0
+                                                          15B2 0400 FFFC 5318 00
+20 2AF8 4B72 6098 0B6B 0000 0000 0000 0000 0000 0000 0000
+     25883     3839        8 02  002221 000000 1 00000080 XFR RD USR LBA B 00000 A20 L 00000001 BO 1000234 BES 0111C80.014C4C1.0111C80
+     36404    10521        4 02  002221 000000 1 00000080 XFR RD USR LBA B 00001 440 L 00000001 BO 1000234 BES 0111C80.014C4C1.0111C80
+     56608    20204        1 00  002021 000000 1 00000080 SEEK USR LBA B 0000000 0 L 00000001
+     56609        1        0 27  002021 000000 1 00000080 SND_SRV 0501 00B3 0000
+ 0000 0000 0000 0000 0000 0001 15B2 00D0
+                                                          15B2 0400 FFFF FFFE 00
+20 2AF8 4B72 6098 0B6B 0000 0000 0000 0000 0000 0000 0000
+     56609        0        1 27  002021 000000 1 00000080 SND_SRV 0101 15B2 0000
+ 0400 0000 0000 0000 0000 0001 4506 00D0
+                                                          15B2 0400 FFFF FFFE 00
+20 2AF8 4B72 6098 0B6B 0000 0000 0000 0000 0000 0000 0000
+     61840     5231        8 02  002221 000000 1 00000080 XFR RD USR LBA B 00000
+000 L 00000001 BO 1000234 BES 0111C80.014C4C1.0111C80
+    986408   924568        3 02  002221 000000 1 00000080 XFR RD USR LBA B 00002
+048 L 00000001 BO 1000234 BES 0111C80.014C4C1.0111C80
+   1028714    42306        8 02  002221 000000 1 00000080 XFR RD USR LBA B 00002
+880 L 00000001 BO 1000234 BES 0111C80.014C4C1.0111C80
+   1055335    26621        5 02  002221 000000 1 00000080 XFR RD USR LBA B 00003
+2A0 L 00000001 BO 1000234 BES 0111C80.014C4C1.0111C80
+   1347329   291994        1 00  002024 000000 1 00000080 SEEK USR TRK CH 000000
+.0
+   1347330        1        1 27  002024 000000 1 00000080 SND_SRV 0501 00B3 0000
+ 0000 0000 0000 0000 0000 0001 15B2 00D0
+                                                          15B2 0400 FFFF FFFB 00
+20 2AF8 4B72 6098 0B6B 0000 0000 0000 0000 0000 0000 0000
+   1347331        1        0 27  002024 000000 1 00000080 SND_SRV 0101 15B2 0000
+ 0400 0000 0000 0000 0000 0001 4506 00D0
+                                                          15B2 0400 FFFF FFFB 00
+20 2AF8 4B72 6098 0B6B 0000 0000 0000 0000 0000 0000 0000
+
+   1349685     2354        9 02  002221 000000 1 00000080 XFR RD USR LBA B 00000 A20 L 00000001 BO 1000234 BES 0111C80.014C4C1.0111C80
+
+
+
+
+
+F3 2>/A
+
+F3 A>R32800,1
+
+F3 A>
+Current R/W User LBA 00032801 LLL CHS 00004F.0.0857 PLP CHS 00004F.0.0857
+R/W Status 1 R/W Error 00000080 Ready
+/2
+
+F3 2>B2239,2239
+
+Buffer Block 2239 compared to Buffer Block 2239 (204 Bytes/Block)
+  Addr    0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00447200  EB 52 90 4E 54 46 53 20 20 20 20 00 02 08 00 00
+00447210  00 00 00 00 00 F8 00 00 3F 00 FF 00 00 28 03 00
+00447220  00 00 00 00 80 00 80 00 FF 27 19 1D 00 00 00 00
+00447230  00 00 0C 00 00 00 00 00 02 00 00 00 00 00 00 00
+00447240  F6 00 00 00 01 00 00 00 5E 2C 80 A0 55 80 A0 E8
+00447250  00 00 00 00 FA 33 C0 8E D0 BC 00 7C FB 68 C0 07
+00447260  1F 1E 68 66 00 CB 88 16 0E 00 66 81 3E 03 00 4E
+00447270  54 46 53 75 15 B4 41 BB AA 55 CD 13 72 0C 81 FB
+00447280  55 AA 75 06 F7 C1 01 00 75 03 E9 DD 00 1E 83 EC
+00447290  18 68 1A 00 B4 48 8A 16 0E 00 8B F4 16 1F CD 13
+004472A0  9F 83 C4 18 9E 58 1F 72 E1 3B 06 0B 00 75 DB A3
+004472B0  0F 00 C1 2E 0F 00 04 1E 5A 33 DB B9 00 20 2B C8
+004472C0  66 FF 06 11 00 03 16 0F 00 8E C2 FF 06 16 00 E8
+004472D0  4B 00 2B C8 77 EF B8 00 BB CD 1A 66 23 C0 75 2D
+004472E0  66 81 FB 54 43 50 41 75 24 81 F9 02 01 72 1E 16
+004472F0  68 07 BB 16 68 70 0E 16 68 09 00 66 53 66 53 66
+00447300  55 16 16 16 68 B8 01 66 61 0E 07 CD 1A 33 C0 BF
+00447310  28 10 B9 D8 0F FC F3 AA E9 5F 01 90 90 66 60 1E
+00447320  06 66 A1 11 00 66 03 06 1C 00 1E 66 68 00 00 00
+00447330  00 66 50 06 53 68 01 00 68 10 00 B4 42 8A 16 0E
+00447340  00 16 1F 8B F4 CD 13 66 59 5B 5A 66 59 66 59 1F
+00447350  0F 82 16 00 66 FF 06 11 00 03 16 0F 00 8E C2 FF
+00447360  0E 16 00 75 BC 07 1F 66 61 C3 A0 F8 01 E8 09 00
+00447370  A0 FB 01 E8 03 00 F4 EB FD B4 01 8B F0 AC 3C 00
+00447380  74 09 B4 0E BB 07 00 CD 10 EB F2 C3 0D 0A 41 20
+00447390  64 69 73 6B 20 72 65 61 64 20 65 72 72 6F 72 20
+004473A0  6F 63 63 75 72 72 65 64 00 0D 0A 42 4F 4F 54 4D
+004473B0  47 52 20 69 73 20 6D 69 73 73 69 6E 67 00 0D 0A
+004473C0  42 4F 4F 54 4D 47 52 20 69 73 20 63 6F 6D 70 72
+004473D0  65 73 73 65 64 00 0D 0A 50 72 65 73 73 20 43 74
+004473E0  72 6C 2B 41 6C 74 2B 44 65 6C 20 74 6F 20 72 65
+004473F0  73 74 61 72 74 0D 0A 00 8C A9 BE D6 00 00 55 AA
+00447400  DB 75 55 AA
+F3 2>/1
+
+F3 A>RC0000,1
+
+F3 A>
+Current R/W User LBA 000C0001 LLL CHS 00012F.0.0457 PLP CHS 00012F.0.0457
+R/W Status 1 R/W Error 00000080 Ready
+
+
+F3 A>
+Current R/W User LBA 000C0001 LLL CHS 00012F.0.0457 PLP CHS 00012F.0.0457
+R/W Status 1 R/W Error 00000080 Ready
+/2
+
+F3 2>B2239,2239
+
+Buffer Block 2239 compared to Buffer Block 2239 (204 Bytes/Block)
+  Addr    0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+00447200  00 64 00 65 00 72 00 23 05 00 00 22 3E 00 3E 00
+00447210  72 00 62 00 41 00 6C 00 6C 00 55 00 73 00 65 00
+00447220  72 00 73 00 2E 00 4E 00 61 00 6D 00 65 00 26 05
+00447230  00 00 26 3E 00 3E 00 72 00 62 00 41 00 6C 00 6C
+00447240  00 55 00 73 00 65 00 72 00 73 00 2E 00 50 00 61
+00447250  00 72 00 65 00 6E 00 74 00 32 05 00 00 22 3E 00
+00447260  3E 00 72 00 62 00 41 00 6C 00 6C 00 55 00 73 00
+00447270  65 00 72 00 73 00 2E 00 54 00 79 00 70 00 65 00
+00447280  46 05 00 00 26 3E 00 3E 00 72 00 62 00 41 00 6C
+00447290  00 6C 00 55 00 73 00 65 00 72 00 73 00 2E 00 5A
+004472A0  00 4F 00 72 00 64 00 65 00 72 00 C1 05 00 00 22
+004472B0  3E 00 3E 00 72 00 62 00 41 00 6C 00 6C 00 56 00
+004472C0  65 00 72 00 62 00 73 00 2E 00 4E 00 61 00 6D 00
+004472D0  65 00 C4 05 00 00 26 3E 00 3E 00 72 00 62 00 41
+004472E0  00 6C 00 6C 00 56 00 65 00 72 00 62 00 73 00 2E
+004472F0  00 50 00 61 00 72 00 65 00 6E 00 74 00 D0 05 00
+00447300  00 22 3E 00 3E 00 72 00 62 00 41 00 6C 00 6C 00
+00447310  56 00 65 00 72 00 62 00 73 00 2E 00 54 00 79 00
+00447320  70 00 65 00 DC 05 00 00 26 3E 00 3E 00 72 00 62
+00447330  00 41 00 6C 00 6C 00 56 00 65 00 72 00 62 00 73
+00447340  00 2E 00 5A 00 4F 00 72 00 64 00 65 00 72 00 57
+00447350  06 00 00 1C 3E 00 3E 00 72 00 62 00 41 00 6C 00
+00447360  6C 00 6F 00 77 00 2E 00 4E 00 61 00 6D 00 65 00
+00447370  5A 06 00 00 20 3E 00 3E 00 72 00 62 00 41 00 6C
+00447380  00 6C 00 6F 00 77 00 2E 00 50 00 61 00 72 00 65
+00447390  00 6E 00 74 00 63 06 00 00 1C 3E 00 3E 00 72 00
+004473A0  62 00 41 00 6C 00 6C 00 6F 00 77 00 2E 00 54 00
+004473B0  79 00 70 00 65 00 69 06 00 00 20 3E 00 3E 00 72
+004473C0  00 62 00 41 00 6C 00 6C 00 6F 00 77 00 2E 00 5A
+004473D0  00 4F 00 72 00 64 00 65 00 72 00 E4 06 00 00 2E
+004473E0  3E 00 3E 00 72 00 62 00 41 00 6E 00 6F 00 6E 00
+004473F0  79 00 6D 00 6F 00 75 00 73 00 55 00 73 00 65 00
+00447400  24 00 65 00
+F3 2>
+
+
+=====================================
+/T Bx,y baud rate
+R read secton into sysram
+Tx run factory test x
+
+/1
+Bx,y buffer display
+Dx,y,z disply memory
+
+B2239,2239
+
+buffer block 2239 esta no end 0x00447200
+mas /1 D0044,7200 mostra o "End do Processador"
+
+
+/2
+Rx,y,z,a
+Sx,y,z,a
+
+/3 servo
+Px,y,z position error display
+k measure head position
+
+/6 batch
+Dx list
+
+/2 rx,y,z,a -para ler tanto user quanto system
+/2 sx,y,z -	seek to
+
+=====================================
+/A
+S0
+.
+
+/2
+R,1
+B2239,2239
+
+
+
+/A
+R800,1 (em lba)
+/2
+B2239,2239
+
+
+
+
+
+
+
+80 20 21 00 07 DF 13 0C 	00 00 20 03 00 
+
+1a particao:
+80 ativa
+20 21 00 chs inicio
+07 tipo particao = ntfs
+df 13 0c chs fim
+00 08 00 00 start sector --> 00 00 08 00 --> LBA: 2.048decimal
+00 20 03 00 partition size --> 204.800 x 512 =100MB
+
+
+00 DF 14 0C 07 FE FF FF 00 28 03 00 00 28 19 1D
+00 nao ativa
+df 14 0c chs inicio
+07 ntfs
+fe ff ff chs fim [esta alem do cilindro 1023]
+00 28 03 00 start sector -> 32800 lba: 206848d
+00 28 16 1d partition size -> 487.991.296 X 512 = 238GB
+
